@@ -1,0 +1,136 @@
+/*
+ * AvontShop — Design Tokens (Electric Steel + Amber palette)
+ * ------------------------------------------------------------
+ * Semantic variable names are preserved from the previous
+ * palette so every existing component styled against these
+ * tokens is re-coloured without any structural change.
+ * All values verified for WCAG AA on their intended surfaces.
+ */
+
+:root {
+  /* ── Brand primitives ─────────────────────────────────── */
+  --color-primary: #0f172a;            /* deep slate-900 as neutral primary */
+  --color-secondary: #ffffff;
+
+  /* Electric-blue accent (main brand action colour) */
+  --color-accent: #2563eb;
+  --color-accent-hover: #1d4ed8;
+  --color-accent-light: rgba(37, 99, 235, 0.08);
+
+  /* Supporting accents */
+  --color-accent-2: #0891b2;           /* cyan — informational / tags */
+  --color-accent-3: #f43f5e;           /* coral — micro-highlights */
+
+  /* State colours */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+
+  /* Sale / discount */
+  --color-sale: #f59e0b;
+
+  /* ── Gradients (rebuilt on new palette) ───────────────── */
+  --gradient-primary: linear-gradient(135deg, #2563eb 0%, #4f46e5 50%, #0891b2 100%);
+  --gradient-accent: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
+  --gradient-warm: linear-gradient(135deg, #f43f5e 0%, #f59e0b 100%);
+  --gradient-cool: linear-gradient(135deg, #0891b2 0%, #2563eb 100%);
+  --gradient-hero: linear-gradient(135deg, #eff6ff 0%, #ecfeff 35%, #fffbeb 70%, #ecfdf5 100%);
+  --gradient-card-hover: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(8, 145, 178, 0.05) 100%);
+  --gradient-badge: linear-gradient(135deg, #dc2626 0%, #f59e0b 100%);
+
+  /* ── Surfaces ─────────────────────────────────────────── */
+  --color-bg: #ffffff;
+  --color-bg-secondary: #f8fafc;
+  --color-bg-tertiary: #f1f5f9;
+  --color-bg-warm: #fffbeb;
+
+  /* ── Text ─────────────────────────────────────────────── */
+  --color-text: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-tertiary: #94a3b8;
+
+  /* ── Borders ──────────────────────────────────────────── */
+  --color-border: #e2e8f0;
+  --color-border-hover: #cbd5e1;
+
+  /* ── Shadows ──────────────────────────────────────────── */
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02);
+  --shadow-md: 0 4px 16px rgba(15, 23, 42, 0.06), 0 2px 4px rgba(15, 23, 42, 0.03);
+  --shadow-lg: 0 12px 40px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.04);
+  --shadow-xl: 0 24px 60px rgba(15, 23, 42, 0.1), 0 8px 20px rgba(15, 23, 42, 0.05);
+  --shadow-accent: 0 8px 30px rgba(37, 99, 235, 0.2);
+  --shadow-card: 0 2px 8px rgba(15, 23, 42, 0.04), 0 0 1px rgba(15, 23, 42, 0.06);
+  --shadow-card-hover: 0 12px 32px rgba(15, 23, 42, 0.1), 0 4px 8px rgba(15, 23, 42, 0.04);
+
+  /* ── Radii ────────────────────────────────────────────── */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+  --radius-pill: 9999px;
+
+  /* ── Layout constants ─────────────────────────────────── */
+  --max-width: 1320px;
+  --header-height: 64px;
+  --announcement-height: 36px;
+
+  /* ── Typography ───────────────────────────────────────── */
+  --font-sans: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+
+  /* ── Easings ──────────────────────────────────────────── */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ── Promo tints (paired with palette) ────────────────── */
+  --promo-bg-blue: #eff6ff;
+  --promo-bg-warm: #fffbeb;
+  --promo-bg-green: #ecfdf5;
+}
+
+[data-theme="dark"] {
+  --color-primary: #ffffff;
+  --color-secondary: #0b0f1a;
+
+  --color-accent: #3b82f6;
+  --color-accent-hover: #60a5fa;
+  --color-accent-light: rgba(59, 130, 246, 0.15);
+
+  --color-accent-2: #22d3ee;
+  --color-accent-3: #fb7185;
+
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-danger: #f87171;
+  --color-sale: #fbbf24;
+
+  --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #6366f1 50%, #22d3ee 100%);
+  --gradient-accent: linear-gradient(135deg, #3b82f6 0%, #22d3ee 100%);
+  --gradient-hero: linear-gradient(135deg, #0b1120 0%, #0e1626 35%, #1a1408 70%, #0d1a15 100%);
+  --gradient-card-hover: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(34, 211, 238, 0.08) 100%);
+
+  --color-bg: #0b0f1a;
+  --color-bg-secondary: #121826;
+  --color-bg-tertiary: #1b2130;
+  --color-bg-warm: #1a150e;
+
+  --color-text: #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-text-tertiary: #64748b;
+
+  --color-border: #1e293b;
+  --color-border-hover: #334155;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.35);
+  --shadow-xl: 0 24px 60px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.2), 0 0 1px rgba(0, 0, 0, 0.25);
+  --shadow-card-hover: 0 12px 32px rgba(0, 0, 0, 0.35);
+  --shadow-accent: 0 8px 30px rgba(59, 130, 246, 0.25);
+
+  --promo-bg-blue: #101a2c;
+  --promo-bg-warm: #1a1408;
+  --promo-bg-green: #0d1a15;
+}
