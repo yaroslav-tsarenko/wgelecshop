@@ -41,8 +41,8 @@ export function DealOfTheDay({ product }: Props) {
   return (
     <motion.section
       ref={ref}
-      className="relative mb-6 flex flex-col items-stretch overflow-hidden rounded-lg border border-white/[0.06] text-white md:flex-row before:pointer-events-none before:absolute before:inset-0 before:content-[''] before:[background:radial-gradient(circle_at_80%_30%,rgba(37,99,235,0.25)_0%,transparent_60%),radial-gradient(circle_at_20%_80%,rgba(245,158,11,0.12)_0%,transparent_50%)]"
-      style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%)" }}
+      className="relative mb-6 flex flex-col items-stretch overflow-hidden rounded-lg border border-white/[0.06] text-white md:flex-row before:pointer-events-none before:absolute before:inset-0 before:content-[''] before:[background:radial-gradient(circle_at_80%_30%,rgba(255,107,26,0.25)_0%,transparent_60%),radial-gradient(circle_at_20%_80%,rgba(245,158,11,0.12)_0%,transparent_50%)]"
+      style={{ background: "linear-gradient(135deg, #1A1D21 0%, #292524 50%, #1A1D21 100%)" }}
       initial={{ opacity: 0, scale: 0.97 }}
       animate={isInView ? { opacity: 1, scale: 1 } : {}}
       transition={{ duration: 0.5 }}

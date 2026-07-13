@@ -37,5 +37,5 @@ export const cartClasses = {
     "static h-fit rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-bg)] p-5 lg:sticky lg:top-[calc(var(--header-height)+var(--announcement-height)+1rem)] lg:rounded-[var(--radius-xl)] lg:p-7",
 
   checkoutBtn:
-    "flex w-full items-center justify-center gap-2 rounded-[var(--radius-xl)] bg-[var(--color-accent)] p-4 text-base font-bold text-white no-underline shadow-[0_4px_14px_rgba(37,99,235,0.3)] transition-[transform,box-shadow] duration-150 hover:-translate-y-px hover:shadow-[0_6px_18px_rgba(37,99,235,0.4)]",
+    "flex w-full items-center justify-center gap-2 rounded-[var(--radius-xl)] bg-[var(--color-accent)] p-4 text-base font-bold text-white no-underline shadow-[0_4px_14px_rgba(255,107,26,0.3)] transition-[transform,box-shadow] duration-150 hover:-translate-y-px hover:shadow-[0_6px_18px_rgba(255,107,26,0.4)]",
 } as const;

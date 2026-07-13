@@ -27,7 +27,7 @@ const defaultSmall: BannerData[] = [
 ];
 
 const defaultWide: BannerData[] = [
-  { id: "w1", badgeText: "Pro Account", title: "Register & Get 10% Off Your First Order", subtitle: "Free shipping over €100, trade pricing, and priority support", bgColor: "#0f172a", textColor: "#ffffff", linkUrl: "/auth/register", ctaLabel: "Join Free" },
+  { id: "w1", badgeText: "Pro Account", title: "Register & Get 10% Off Your First Order", subtitle: "Free shipping over €100, trade pricing, and priority support", bgColor: "#1A1D21", textColor: "#ffffff", linkUrl: "/auth/register", ctaLabel: "Join Free" },
 ];
 
 export function PromoBannerGrid({ smallBanners, wideBanners }: Props) {
@@ -42,7 +42,7 @@ export function PromoBannerGrid({ smallBanners, wideBanners }: Props) {
             <Link
               key={b.id}
               href={b.linkUrl || "#"}
-              className="flex flex-col rounded-lg border border-[var(--color-border)] p-5 text-[var(--color-text)] no-underline transition-[box-shadow,transform] duration-150 hover:-translate-y-px hover:shadow-[0_2px_10px_rgba(15,23,42,0.06)]"
+              className="flex flex-col rounded-lg border border-[var(--color-border)] p-5 text-[var(--color-text)] no-underline transition-[box-shadow,transform] duration-150 hover:-translate-y-px hover:shadow-[0_2px_10px_rgba(26,29,33,0.06)]"
               style={{ background: b.bgColor, color: b.textColor }}
             >
               {b.badgeText && (

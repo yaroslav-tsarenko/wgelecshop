@@ -51,7 +51,7 @@ const defaultSlides: DefaultSlide[] = [
     subtitle: "Certified panels, circuit breakers, and modular enclosures for residential and commercial installations",
     ctaLabel: "Shop Now",
     linkUrl: "/catalog",
-    bgColor: "#0f172a",
+    bgColor: "#1A1D21",
     textColor: "#ffffff",
     bgImage: banner1,
   },
@@ -62,7 +62,7 @@ const defaultSlides: DefaultSlide[] = [
     subtitle: "From compact enclosures to full-size distribution cabinets — everything for your next project",
     ctaLabel: "Browse Equipment",
     linkUrl: "/catalog",
-    bgColor: "#f8fafc",
+    bgColor: "#FAFAF9",
     textColor: "#ffffff",
     bgImage: banner2,
   },
@@ -191,7 +191,7 @@ export function HeroCarousel({ slides, deals }: Props) {
             <Link
               key={deal.id}
               href={deal.linkUrl || "/catalog"}
-              className="relative flex flex-1 flex-col rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] no-underline transition-[border-color,box-shadow] duration-100 hover:border-[var(--color-border-hover)] hover:shadow-[0_2px_8px_rgba(15,23,42,0.06)]"
+              className="relative flex flex-1 flex-col rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] no-underline transition-[border-color,box-shadow] duration-100 hover:border-[var(--color-border-hover)] hover:shadow-[0_2px_8px_rgba(26,29,33,0.06)]"
             >
               {deal.discountText && (
                 <span className="absolute right-2 top-2 rounded bg-[var(--color-sale)] px-1.5 py-0.5 text-[0.7rem] font-bold text-white">

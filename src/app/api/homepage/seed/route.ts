@@ -45,7 +45,7 @@ export async function POST() {
       { label: "Apple Store", icon: "Apple", linkUrl: "/brands/apple", color: "#333333", sortOrder: 1 },
       { label: "Dyson Store", icon: "Wind", linkUrl: "/brands/dyson", color: "#6B21A8", sortOrder: 2 },
       { label: "Get Bonus", icon: "Star", linkUrl: "/bonus", color: "#F59E0B", sortOrder: 3 },
-      { label: "Mobile App", icon: "Smartphone", linkUrl: "/app", color: "#2563EB", sortOrder: 4 },
+      { label: "Mobile App", icon: "Smartphone", linkUrl: "/app", color: "#FF6B1A", sortOrder: 4 },
       { label: "Gaming World", icon: "Gamepad2", linkUrl: "/gaming", color: "#DC2626", sortOrder: 5 },
       { label: "Tips", icon: "Lightbulb", linkUrl: "/tips", color: "#16A34A", sortOrder: 6 },
       { label: "New Arrivals", icon: "Sparkles", linkUrl: "/new-arrivals", color: "#7C3AED", sortOrder: 7 },

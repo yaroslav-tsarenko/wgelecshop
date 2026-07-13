@@ -147,7 +147,7 @@ export function HeroBanner() {
             >
               <Link
                 href={slide.ctaHref}
-                className="inline-flex items-center gap-2 rounded-[var(--radius-pill)] border-none bg-[var(--color-accent)] px-8 py-3.5 text-[0.9375rem] font-bold text-white no-underline transition-[transform,box-shadow,background] duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-accent-hover)] hover:shadow-[0_4px_16px_rgba(37,99,235,0.4)] active:translate-y-0"
+                className="inline-flex items-center gap-2 rounded-[var(--radius-pill)] border-none bg-[var(--color-accent)] px-8 py-3.5 text-[0.9375rem] font-bold text-white no-underline transition-[transform,box-shadow,background] duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-accent-hover)] hover:shadow-[0_4px_16px_rgba(255,107,26,0.4)] active:translate-y-0"
               >
                 {t(slide.ctaKey)} <ArrowRight size={16} />
               </Link>

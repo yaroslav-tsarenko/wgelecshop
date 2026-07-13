@@ -17,7 +17,7 @@ const banners = [
     desc: "Certified panels, circuit breakers, and modular enclosures for residential and commercial installations.",
     href: "/catalog",
     cta: "Shop Switchgear",
-    accent: "#2563eb",
+    accent: "#FF6B1A",
   },
   {
     image: banner2,
@@ -26,7 +26,7 @@ const banners = [
     desc: "From compact enclosures to full-size distribution cabinets — everything for your next project.",
     href: "/catalog",
     cta: "Browse Equipment",
-    accent: "#f59e0b",
+    accent: "#FFB300",
   },
   {
     image: banner3,
@@ -35,7 +35,7 @@ const banners = [
     desc: "Premium copper cables, flexible wiring, terminal blocks, and accessories at wholesale prices.",
     href: "/catalog",
     cta: "View Cables",
-    accent: "#10b981",
+    accent: "#292524",
   },
 ];
 
@@ -49,7 +49,7 @@ export function PromoBanners() {
         {banners.map((b, i) => (
           <motion.div
             key={i}
-            className="group flex flex-col overflow-hidden rounded-[10px] border border-[#e5e5e5] bg-white transition-[box-shadow,transform] duration-200 hover:-translate-y-[3px] hover:shadow-[0_8px_28px_rgba(15,23,42,0.1)] dark:border-[#334155] dark:bg-[#1e293b]"
+            className="group flex flex-col overflow-hidden rounded-[10px] border border-[#e5e5e5] bg-white transition-[box-shadow,transform] duration-200 hover:-translate-y-[3px] hover:shadow-[0_8px_28px_rgba(26,29,33,0.1)] dark:border-[#44403C] dark:bg-[#292524]"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: i * 0.12 }}
@@ -72,10 +72,10 @@ export function PromoBanners() {
               >
                 {b.tag}
               </span>
-              <h3 className="m-0 text-[0.95rem] font-bold leading-[1.3] text-[#0f172a] dark:text-[#f0f0f0]">
+              <h3 className="m-0 text-[0.95rem] font-bold leading-[1.3] text-[#1A1D21] dark:text-[#f0f0f0]">
                 {b.title}
               </h3>
-              <p className="m-0 line-clamp-3 text-[0.8rem] leading-relaxed text-[#666] dark:text-[#94a3b8]">
+              <p className="m-0 line-clamp-3 text-[0.8rem] leading-relaxed text-[#666] dark:text-[#A8A29E]">
                 {b.desc}
               </p>
               <Link

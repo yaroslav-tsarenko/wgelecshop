@@ -1,11 +1,11 @@
 /* Admin Panel — Premium Dashboard Theme (Light / Dark) */
 
 [data-admin-theme] {
-  --admin-accent: #2563eb;
-  --admin-accent-light: #3b82f6;
-  --admin-accent-dark: #1d4ed8;
-  --admin-accent-bg: rgba(37, 99, 235, 0.10);
-  --admin-accent-bg-hover: rgba(37, 99, 235, 0.16);
+  --admin-accent: #FF6B1A;
+  --admin-accent-light: #FF8533;
+  --admin-accent-dark: #E55A0F;
+  --admin-accent-bg: rgba(255, 107, 26, 0.10);
+  --admin-accent-bg-hover: rgba(255, 107, 26, 0.16);
   --admin-radius: 14px;
   --admin-radius-lg: 22px;
   --admin-radius-xl: 26px;
@@ -47,13 +47,13 @@
   --color-text-tertiary: #71717a;
   --color-border: rgba(255, 255, 255, 0.08);
   --color-border-hover: rgba(255, 255, 255, 0.14);
-  --color-accent: #2563eb;
+  --color-accent: #FF6B1A;
   --color-success: #10b981;
   --color-warning: #f59e0b;
   --color-danger: #ef4444;
-  --color-accent-light: rgba(37, 99, 235, 0.10);
-  --gradient-primary: #2563eb;
-  --shadow-accent: 0 8px 30px rgba(37, 99, 235, 0.2);
+  --color-accent-light: rgba(255, 107, 26, 0.10);
+  --gradient-primary: #FF6B1A;
+  --shadow-accent: 0 8px 30px rgba(255, 107, 26, 0.2);
 }
 
 /* ─── Light Theme ─── */
@@ -87,13 +87,13 @@
   --color-text-tertiary: #a1a1aa;
   --color-border: rgba(0, 0, 0, 0.08);
   --color-border-hover: rgba(0, 0, 0, 0.15);
-  --color-accent: #2563eb;
+  --color-accent: #FF6B1A;
   --color-success: #10b981;
   --color-warning: #f59e0b;
   --color-danger: #ef4444;
-  --color-accent-light: rgba(37, 99, 235, 0.08);
-  --gradient-primary: #2563eb;
-  --shadow-accent: 0 8px 30px rgba(37, 99, 235, 0.12);
+  --color-accent-light: rgba(255, 107, 26, 0.08);
+  --gradient-primary: #FF6B1A;
+  --shadow-accent: 0 8px 30px rgba(255, 107, 26, 0.12);
 }
 
 /* ─── Admin Layout ─── */
@@ -326,7 +326,7 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(37, 99, 235, 0.1));
+  background: linear-gradient(135deg, rgba(255, 107, 26, 0.2), rgba(255, 107, 26, 0.1));
   color: var(--admin-accent);
   display: flex;
   align-items: center;
@@ -334,7 +334,7 @@
   font-size: 0.6875rem;
   font-weight: 700;
   flex-shrink: 0;
-  border: 1px solid rgba(37, 99, 235, 0.2);
+  border: 1px solid rgba(255, 107, 26, 0.2);
 }
 
 .admin-sidebar-footer-info {
@@ -535,7 +535,7 @@
 }
 
 .admin-badge-accent {
-  background: rgba(37, 99, 235, 0.12);
+  background: rgba(255, 107, 26, 0.12);
   color: var(--admin-accent);
 }
 
@@ -736,8 +736,8 @@
 }
 
 .admin-input:focus {
-  border-color: rgba(37, 99, 235, 0.5);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  border-color: rgba(255, 107, 26, 0.5);
+  box-shadow: 0 0 0 3px rgba(255, 107, 26, 0.12);
 }
 
 .admin-input::placeholder {
@@ -760,8 +760,8 @@
 }
 
 .admin-textarea:focus {
-  border-color: rgba(37, 99, 235, 0.5);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  border-color: rgba(255, 107, 26, 0.5);
+  box-shadow: 0 0 0 3px rgba(255, 107, 26, 0.12);
 }
 
 .admin-select {
@@ -781,8 +781,8 @@
 }
 
 .admin-select:focus {
-  border-color: rgba(37, 99, 235, 0.5);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  border-color: rgba(255, 107, 26, 0.5);
+  box-shadow: 0 0 0 3px rgba(255, 107, 26, 0.12);
 }
 
 .admin-label {

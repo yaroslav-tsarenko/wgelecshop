@@ -1,5 +1,5 @@
 /*
- * AvontShop — global stylesheet
+ * WGELECSHOP — global stylesheet
  * ------------------------------------------------------------
  * Layers order (Tailwind v4):
  *   1. tailwindcss (preflight + utilities)
@@ -199,7 +199,7 @@
   }
 
   [data-theme="dark"] .glass {
-    background: rgba(11, 15, 26, 0.75);
+    background: rgba(10, 15, 13, 0.75);
   }
 
   .glass-border {

@@ -16,7 +16,7 @@ export default function AboutPage() {
       <div className="mx-auto max-w-3xl">
         <div className="mb-8 text-center sm:mb-12">
           <h1 className="mb-4 text-[1.625rem] font-extrabold tracking-[-0.04em] sm:text-[2.25rem]">
-            About <span className="gradient-text">AvontShop</span>
+            About <span className="gradient-text">WGELECSHOP</span>
           </h1>
           <p className="mx-auto max-w-[540px] text-[0.9375rem] leading-[1.7] text-[var(--color-text-secondary)] sm:text-[1.0625rem]">
             We&apos;re on a mission to make professional-grade electrical materials accessible to electricians, contractors, and DIY installers. Finding the right cables, switchgear, and installation accessories shouldn&apos;t be complicated.

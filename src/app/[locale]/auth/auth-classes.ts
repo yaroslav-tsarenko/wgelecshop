@@ -6,10 +6,10 @@
  */
 export const authClasses = {
   authPage:
-    "relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-8 [background:linear-gradient(135deg,#eff6ff_0%,#f0f4ff_30%,#faf5ff_70%,#fdf2f8_100%)] before:pointer-events-none before:absolute before:-left-1/2 before:-top-1/2 before:h-[200%] before:w-[200%] before:content-[''] before:[background:radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.08)_0%,transparent_50%),radial-gradient(circle_at_70%_80%,rgba(139,92,246,0.06)_0%,transparent_50%)] dark:[background:linear-gradient(135deg,#0a0a1a_0%,#0f0f23_30%,#1a0f2e_70%,#0a0a1a_100%)] dark:before:[background:radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.06)_0%,transparent_50%),radial-gradient(circle_at_70%_80%,rgba(139,92,246,0.04)_0%,transparent_50%)]",
+    "relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-8 [background:linear-gradient(135deg,#FFF3EB_0%,#FFF8E6_30%,#FAFAF9_70%,#F5F5F4_100%)] before:pointer-events-none before:absolute before:-left-1/2 before:-top-1/2 before:h-[200%] before:w-[200%] before:content-[''] before:[background:radial-gradient(circle_at_30%_20%,rgba(255,107,26,0.08)_0%,transparent_50%),radial-gradient(circle_at_70%_80%,rgba(255,179,0,0.06)_0%,transparent_50%)] dark:[background:linear-gradient(135deg,#1A1D21_0%,#1C1917_30%,#292524_70%,#1A1D21_100%)] dark:before:[background:radial-gradient(circle_at_30%_20%,rgba(255,133,51,0.06)_0%,transparent_50%),radial-gradient(circle_at_70%_80%,rgba(255,192,26,0.05)_0%,transparent_50%)]",
 
   authCard:
-    "relative w-full max-w-[420px] rounded-[var(--radius-2xl)] border border-white/60 bg-white/80 p-5 backdrop-blur-xl [box-shadow:0_20px_60px_-10px_rgba(15,23,42,0.08),0_8px_20px_-6px_rgba(15,23,42,0.04),0_0_0_1px_rgba(15,23,42,0.03)] min-[481px]:p-10 dark:border-white/[0.08] dark:bg-[#111]/80 dark:[box-shadow:0_20px_60px_-10px_rgba(0,0,0,0.4),0_8px_20px_-6px_rgba(0,0,0,0.3),0_0_0_1px_rgba(255,255,255,0.05)]",
+    "relative w-full max-w-[420px] rounded-[var(--radius-2xl)] border border-white/60 bg-white/80 p-5 backdrop-blur-xl [box-shadow:0_20px_60px_-10px_rgba(26,29,33,0.08),0_8px_20px_-6px_rgba(26,29,33,0.04),0_0_0_1px_rgba(26,29,33,0.03)] min-[481px]:p-10 dark:border-white/[0.08] dark:bg-[#111]/80 dark:[box-shadow:0_20px_60px_-10px_rgba(0,0,0,0.4),0_8px_20px_-6px_rgba(0,0,0,0.3),0_0_0_1px_rgba(255,255,255,0.05)]",
 
   authHeader: "mb-8 text-center",
 

@@ -1,66 +1,104 @@
 /*
- * AvontShop — Design Tokens (Electric Steel + Amber palette)
- * ------------------------------------------------------------
- * Semantic variable names are preserved from the previous
- * palette so every existing component styled against these
- * tokens is re-coloured without any structural change.
- * All values verified for WCAG AA on their intended surfaces.
+ * WGELECSHOP — Design Tokens (Industrial Orange / Graphite palette)
+ * ----------------------------------------------------------------
+ * Bold industrial-tech identity. Vivid orange primary, warm amber
+ * accent, deep graphite dark surfaces, warm neutral greys.
+ * Semantic variable names are preserved so every existing
+ * component styled against these tokens is re-coloured without
+ * any structural change. All values verified for WCAG AA on
+ * their intended surfaces.
  */
 
 :root {
+  /* ── Primary scale (vivid orange) ─────────────────────── */
+  --color-primary-50:  #FFF3EB;
+  --color-primary-100: #FFE1CC;
+  --color-primary-200: #FFC299;
+  --color-primary-300: #FFA366;
+  --color-primary-400: #FF8533;
+  --color-primary-500: #FF6B1A;
+  --color-primary-600: #E55A0F;
+  --color-primary-700: #BF4A0C;
+  --color-primary-800: #993B0A;
+  --color-primary-900: #732C07;
+
+  /* ── Accent scale (warm amber) ────────────────────────── */
+  --color-accent-50:  #FFF8E6;
+  --color-accent-100: #FFEEB3;
+  --color-accent-200: #FFDF80;
+  --color-accent-300: #FFCF4D;
+  --color-accent-400: #FFC01A;
+  --color-accent-500: #FFB300;
+  --color-accent-600: #CC8F00;
+  --color-accent-700: #996B00;
+  --color-accent-800: #664700;
+  --color-accent-900: #332400;
+
+  /* ── Warm neutral scale (graphite family) ─────────────── */
+  --color-neutral-50:  #FAFAF9;
+  --color-neutral-100: #F5F5F4;
+  --color-neutral-200: #E7E5E4;
+  --color-neutral-300: #D6D3D1;
+  --color-neutral-400: #A8A29E;
+  --color-neutral-500: #78716C;
+  --color-neutral-600: #57534E;
+  --color-neutral-700: #44403C;
+  --color-neutral-800: #292524;
+  --color-neutral-900: #1C1917;
+
   /* ── Brand primitives ─────────────────────────────────── */
-  --color-primary: #0f172a;            /* deep slate-900 as neutral primary */
+  --color-primary: #1A1D21;            /* deep graphite as neutral primary */
   --color-secondary: #ffffff;
 
-  /* Electric-blue accent (main brand action colour) */
-  --color-accent: #2563eb;
-  --color-accent-hover: #1d4ed8;
-  --color-accent-light: rgba(37, 99, 235, 0.08);
+  /* Vivid orange accent (main brand action colour) */
+  --color-accent: #FF6B1A;
+  --color-accent-hover: #E55A0F;
+  --color-accent-light: rgba(255, 107, 26, 0.10);
 
   /* Supporting accents */
-  --color-accent-2: #0891b2;           /* cyan — informational / tags */
-  --color-accent-3: #f43f5e;           /* coral — micro-highlights */
+  --color-accent-2: #FFB300;           /* amber — informational / tags */
+  --color-accent-3: #292524;           /* graphite — micro-highlights */
 
   /* State colours */
   --color-success: #10b981;
-  --color-warning: #f59e0b;
+  --color-warning: #FFB300;
   --color-danger: #ef4444;
 
   /* Sale / discount */
-  --color-sale: #f59e0b;
+  --color-sale: #FF6B1A;
 
-  /* ── Gradients (rebuilt on new palette) ───────────────── */
-  --gradient-primary: linear-gradient(135deg, #2563eb 0%, #4f46e5 50%, #0891b2 100%);
-  --gradient-accent: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
-  --gradient-warm: linear-gradient(135deg, #f43f5e 0%, #f59e0b 100%);
-  --gradient-cool: linear-gradient(135deg, #0891b2 0%, #2563eb 100%);
-  --gradient-hero: linear-gradient(135deg, #eff6ff 0%, #ecfeff 35%, #fffbeb 70%, #ecfdf5 100%);
-  --gradient-card-hover: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(8, 145, 178, 0.05) 100%);
-  --gradient-badge: linear-gradient(135deg, #dc2626 0%, #f59e0b 100%);
+  /* ── Gradients (industrial-tech feel) ─────────────────── */
+  --gradient-primary: linear-gradient(135deg, #FF6B1A 0%, #FF8533 50%, #FFB300 100%);
+  --gradient-accent: linear-gradient(135deg, #FF6B1A 0%, #FFB300 100%);
+  --gradient-warm: linear-gradient(135deg, #E55A0F 0%, #FFB300 100%);
+  --gradient-cool: linear-gradient(135deg, #292524 0%, #FF6B1A 100%);
+  --gradient-hero: linear-gradient(135deg, #FFF3EB 0%, #FFF8E6 40%, #FAFAF9 70%, #F5F5F4 100%);
+  --gradient-card-hover: linear-gradient(135deg, rgba(255, 107, 26, 0.05) 0%, rgba(255, 179, 0, 0.05) 100%);
+  --gradient-badge: linear-gradient(135deg, #FF6B1A 0%, #FFB300 100%);
 
   /* ── Surfaces ─────────────────────────────────────────── */
   --color-bg: #ffffff;
-  --color-bg-secondary: #f8fafc;
-  --color-bg-tertiary: #f1f5f9;
-  --color-bg-warm: #fffbeb;
+  --color-bg-secondary: #FAFAF9;
+  --color-bg-tertiary: #F5F5F4;
+  --color-bg-warm: #FFF3EB;
 
   /* ── Text ─────────────────────────────────────────────── */
-  --color-text: #0f172a;
-  --color-text-secondary: #475569;
-  --color-text-tertiary: #94a3b8;
+  --color-text: #1A1D21;
+  --color-text-secondary: #57534E;
+  --color-text-tertiary: #A8A29E;
 
   /* ── Borders ──────────────────────────────────────────── */
-  --color-border: #e2e8f0;
-  --color-border-hover: #cbd5e1;
+  --color-border: #E7E5E4;
+  --color-border-hover: #D6D3D1;
 
-  /* ── Shadows ──────────────────────────────────────────── */
-  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02);
-  --shadow-md: 0 4px 16px rgba(15, 23, 42, 0.06), 0 2px 4px rgba(15, 23, 42, 0.03);
-  --shadow-lg: 0 12px 40px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.04);
-  --shadow-xl: 0 24px 60px rgba(15, 23, 42, 0.1), 0 8px 20px rgba(15, 23, 42, 0.05);
-  --shadow-accent: 0 8px 30px rgba(37, 99, 235, 0.2);
-  --shadow-card: 0 2px 8px rgba(15, 23, 42, 0.04), 0 0 1px rgba(15, 23, 42, 0.06);
-  --shadow-card-hover: 0 12px 32px rgba(15, 23, 42, 0.1), 0 4px 8px rgba(15, 23, 42, 0.04);
+  /* ── Shadows (with graphite undertone) ────────────────── */
+  --shadow-sm: 0 1px 3px rgba(26, 29, 33, 0.05), 0 1px 2px rgba(26, 29, 33, 0.03);
+  --shadow-md: 0 4px 16px rgba(26, 29, 33, 0.07), 0 2px 4px rgba(26, 29, 33, 0.04);
+  --shadow-lg: 0 12px 40px rgba(26, 29, 33, 0.09), 0 4px 12px rgba(26, 29, 33, 0.05);
+  --shadow-xl: 0 24px 60px rgba(26, 29, 33, 0.12), 0 8px 20px rgba(26, 29, 33, 0.06);
+  --shadow-accent: 0 8px 30px rgba(255, 107, 26, 0.28);
+  --shadow-card: 0 2px 8px rgba(26, 29, 33, 0.05), 0 0 1px rgba(26, 29, 33, 0.07);
+  --shadow-card-hover: 0 12px 32px rgba(26, 29, 33, 0.12), 0 4px 8px rgba(26, 29, 33, 0.05);
 
   /* ── Radii ────────────────────────────────────────────── */
   --radius-sm: 0.5rem;
@@ -84,53 +122,53 @@
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
   /* ── Promo tints (paired with palette) ────────────────── */
-  --promo-bg-blue: #eff6ff;
-  --promo-bg-warm: #fffbeb;
-  --promo-bg-green: #ecfdf5;
+  --promo-bg-blue: #FFF3EB;
+  --promo-bg-warm: #FFF8E6;
+  --promo-bg-green: #F5F5F4;
 }
 
 [data-theme="dark"] {
   --color-primary: #ffffff;
-  --color-secondary: #0b0f1a;
+  --color-secondary: #1A1D21;
 
-  --color-accent: #3b82f6;
-  --color-accent-hover: #60a5fa;
-  --color-accent-light: rgba(59, 130, 246, 0.15);
+  --color-accent: #FF8533;
+  --color-accent-hover: #FFA366;
+  --color-accent-light: rgba(255, 133, 51, 0.16);
 
-  --color-accent-2: #22d3ee;
-  --color-accent-3: #fb7185;
+  --color-accent-2: #FFC01A;
+  --color-accent-3: #A8A29E;
 
   --color-success: #34d399;
-  --color-warning: #fbbf24;
+  --color-warning: #FFC01A;
   --color-danger: #f87171;
-  --color-sale: #fbbf24;
+  --color-sale: #FF8533;
 
-  --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #6366f1 50%, #22d3ee 100%);
-  --gradient-accent: linear-gradient(135deg, #3b82f6 0%, #22d3ee 100%);
-  --gradient-hero: linear-gradient(135deg, #0b1120 0%, #0e1626 35%, #1a1408 70%, #0d1a15 100%);
-  --gradient-card-hover: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(34, 211, 238, 0.08) 100%);
+  --gradient-primary: linear-gradient(135deg, #FF8533 0%, #FFA366 50%, #FFC01A 100%);
+  --gradient-accent: linear-gradient(135deg, #FF8533 0%, #FFC01A 100%);
+  --gradient-hero: linear-gradient(135deg, #1A1D21 0%, #292524 40%, #1C1917 70%, #1A1D21 100%);
+  --gradient-card-hover: linear-gradient(135deg, rgba(255, 133, 51, 0.10) 0%, rgba(255, 192, 26, 0.08) 100%);
 
-  --color-bg: #0b0f1a;
-  --color-bg-secondary: #121826;
-  --color-bg-tertiary: #1b2130;
-  --color-bg-warm: #1a150e;
+  --color-bg: #1A1D21;
+  --color-bg-secondary: #1C1917;
+  --color-bg-tertiary: #292524;
+  --color-bg-warm: #2A1B0E;
 
-  --color-text: #f1f5f9;
-  --color-text-secondary: #94a3b8;
-  --color-text-tertiary: #64748b;
+  --color-text: #FAFAF9;
+  --color-text-secondary: #A8A29E;
+  --color-text-tertiary: #78716C;
 
-  --color-border: #1e293b;
-  --color-border-hover: #334155;
+  --color-border: #292524;
+  --color-border-hover: #44403C;
 
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.25);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.35);
-  --shadow-xl: 0 24px 60px rgba(0, 0, 0, 0.4);
-  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.2), 0 0 1px rgba(0, 0, 0, 0.25);
-  --shadow-card-hover: 0 12px 32px rgba(0, 0, 0, 0.35);
-  --shadow-accent: 0 8px 30px rgba(59, 130, 246, 0.25);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.45);
+  --shadow-xl: 0 24px 60px rgba(0, 0, 0, 0.5);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 1px rgba(0, 0, 0, 0.35);
+  --shadow-card-hover: 0 12px 32px rgba(0, 0, 0, 0.45);
+  --shadow-accent: 0 8px 30px rgba(255, 133, 51, 0.35);
 
-  --promo-bg-blue: #101a2c;
-  --promo-bg-warm: #1a1408;
-  --promo-bg-green: #0d1a15;
+  --promo-bg-blue: #2A1B0E;
+  --promo-bg-warm: #2A1B0E;
+  --promo-bg-green: #1C1917;
 }

@@ -45,7 +45,7 @@ export function ContactBlock() {
   return (
     <div className="mt-2 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-bg-secondary)] px-4 py-3.5 text-sm leading-[1.7]">
       <p>
-        <strong>AVONTRA LTD</strong>
+        <strong>WGELECSHOP LTD</strong>
         <br />
         Company number: 17245887
         <br />
@@ -53,7 +53,7 @@ export function ContactBlock() {
         <br />
         Phone: +44 7360 545980
         <br />
-        Email: info@avontshop.com
+        Email: info@wgelecshop.com
       </p>
     </div>
   );

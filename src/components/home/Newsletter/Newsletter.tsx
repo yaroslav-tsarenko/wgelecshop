@@ -46,7 +46,7 @@ export function Newsletter() {
           />
           <button
             type="submit"
-            className="flex items-center gap-1.5 whitespace-nowrap rounded-[var(--radius-pill)] border-none bg-white px-6 py-3 text-sm font-bold text-[var(--color-accent)] transition-[transform,box-shadow] duration-150 hover:-translate-y-px hover:shadow-[0_4px_16px_rgba(15,23,42,0.18)] active:translate-y-0"
+            className="flex items-center gap-1.5 whitespace-nowrap rounded-[var(--radius-pill)] border-none bg-white px-6 py-3 text-sm font-bold text-[var(--color-accent)] transition-[transform,box-shadow] duration-150 hover:-translate-y-px hover:shadow-[0_4px_16px_rgba(26,29,33,0.18)] active:translate-y-0"
           >
             <Send size={16} />
             {t("newsletterCta")}

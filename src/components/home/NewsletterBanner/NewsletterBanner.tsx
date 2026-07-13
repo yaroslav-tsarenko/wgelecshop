@@ -73,7 +73,7 @@ export function NewsletterBanner() {
             />
             <button
               type="submit"
-              className="whitespace-nowrap rounded-lg border-none bg-white px-6 py-3 text-sm font-bold text-[var(--color-accent)] transition-[transform,box-shadow] duration-150 hover:-translate-y-px hover:shadow-[0_4px_16px_rgba(15,23,42,0.15)]"
+              className="whitespace-nowrap rounded-lg border-none bg-white px-6 py-3 text-sm font-bold text-[var(--color-accent)] transition-[transform,box-shadow] duration-150 hover:-translate-y-px hover:shadow-[0_4px_16px_rgba(26,29,33,0.15)]"
             >
               Subscribe
             </button>

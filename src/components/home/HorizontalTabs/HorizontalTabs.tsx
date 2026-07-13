@@ -44,7 +44,7 @@ export function HorizontalTabs({ tabs }: Props) {
                 "flex items-center gap-1.5 whitespace-nowrap rounded-md border px-3 py-1.5 text-[0.8125rem] font-medium no-underline transition-[border-color,box-shadow] duration-100",
                 isActive
                   ? "border-[var(--color-accent)] bg-[var(--color-accent-light)] text-[var(--color-text)]"
-                  : "border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text)] hover:border-[var(--color-border-hover)] hover:shadow-[0_1px_3px_rgba(15,23,42,0.06)]",
+                  : "border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text)] hover:border-[var(--color-border-hover)] hover:shadow-[0_1px_3px_rgba(26,29,33,0.06)]",
               ].join(" ")}
             >
               <Icon size={15} style={{ color: tab.color }} />

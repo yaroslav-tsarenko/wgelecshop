@@ -68,7 +68,7 @@ export function CategorySidebar() {
       <button
         onClick={() => setMobileOpen(true)}
         aria-label="Open categories"
-        className="flex items-center gap-2 rounded-lg border-none bg-[#0f172a] px-4 py-2 text-sm font-semibold text-white lg:hidden"
+        className="flex items-center gap-2 rounded-lg border-none bg-[#1A1D21] px-4 py-2 text-sm font-semibold text-white lg:hidden"
       >
         <Menu size={20} />
         <span>Categories</span>
@@ -85,7 +85,7 @@ export function CategorySidebar() {
           mobileOpen ? "max-lg:left-0" : "max-lg:-left-[300px]",
         ].join(" ")}
       >
-        <div className="flex items-center justify-between bg-[#0f172a] px-4 py-3 text-white">
+        <div className="flex items-center justify-between bg-[#1A1D21] px-4 py-3 text-white">
           <h3 className="m-0 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.03em]">
             <Menu size={16} />
             Catalog

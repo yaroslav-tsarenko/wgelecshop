@@ -84,7 +84,7 @@ export function SaleStrip({ products }: Props) {
               >
                 <Link
                   href={`/product/${p.slug}`}
-                  className="relative flex w-[140px] flex-shrink-0 flex-col rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] p-3 text-[var(--color-text)] no-underline transition-[border-color,box-shadow] duration-100 hover:border-[var(--color-border-hover)] hover:shadow-[0_2px_8px_rgba(15,23,42,0.06)] sm:w-[160px]"
+                  className="relative flex w-[140px] flex-shrink-0 flex-col rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] p-3 text-[var(--color-text)] no-underline transition-[border-color,box-shadow] duration-100 hover:border-[var(--color-border-hover)] hover:shadow-[0_2px_8px_rgba(26,29,33,0.06)] sm:w-[160px]"
                 >
                   {discount > 0 && (
                     <span className="absolute left-1.5 top-1.5 z-10 rounded bg-[var(--color-sale)] px-1.5 py-0.5 text-[0.65rem] font-bold text-white">

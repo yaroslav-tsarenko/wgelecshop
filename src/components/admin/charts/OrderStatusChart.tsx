@@ -3,13 +3,13 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recharts";
 
 const STATUS_COLORS: Record<string, string> = {
-  PENDING: "#F59E0B",
-  CONFIRMED: "#0A84FF",
-  PROCESSING: "#8b5cf6",
-  SHIPPED: "#06b6d4",
-  DELIVERED: "#00C853",
+  PENDING: "#FFB300",
+  CONFIRMED: "#FF6B1A",
+  PROCESSING: "#FF8533",
+  SHIPPED: "#FFC01A",
+  DELIVERED: "#10b981",
   CANCELLED: "#EF4444",
-  REFUNDED: "#71717a",
+  REFUNDED: "#78716C",
 };
 
 interface OrderStatusChartProps {

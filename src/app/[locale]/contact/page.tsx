@@ -21,9 +21,9 @@ const labelCls = "block mb-1.5 text-[0.8125rem] font-semibold text-[var(--color-
 const errorCls = "mt-1 text-xs text-[var(--color-danger)]";
 
 const CONTACT_INFO = [
-  { icon: Mail, title: "Email Us", detail: "info@avontshop.com", sub: "We reply within 24 hours" },
+  { icon: Mail, title: "Email Us", detail: "info@wgelecshop.com", sub: "We reply within 24 hours" },
   { icon: Phone, title: "Call Us", detail: "+44 7360 545980", sub: "Mon-Fri 9:00-18:00 GMT" },
-  { icon: MapPin, title: "Our Office", detail: "London, United Kingdom", sub: "AVONTRA LTD", tooltip: "Dept 6735, 196 High Road, Wood Green, London, N22 8HH, UK\nCompany No. 17245887" },
+  { icon: MapPin, title: "Our Office", detail: "London, United Kingdom", sub: "WGELECSHOP LTD", tooltip: "Dept 6735, 196 High Road, Wood Green, London, N22 8HH, UK\nCompany No. 17245887" },
   { icon: Clock, title: "Working Hours", detail: "Mon-Fri 9:00-18:00", sub: "Sat 10:00-14:00" },
 ];
 
@@ -92,7 +92,7 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 + i * 0.05 }}
-            whileHover={{ y: -4, boxShadow: "0 8px 24px rgba(15,23,42,0.08)" }}
+            whileHover={{ y: -4, boxShadow: "0 8px 24px rgba(26,29,33,0.08)" }}
             className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg)] p-4 text-center min-[481px]:p-6"
           >
             <div className="mx-auto mb-3.5 flex h-12 w-12 items-center justify-center rounded-[14px] bg-[var(--color-accent-light)] text-[var(--color-accent)]">
@@ -271,7 +271,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="rounded-[var(--radius-xl)] p-6 text-white [background:linear-gradient(135deg,#0f172a_0%,#1e293b_100%)]">
+          <div className="rounded-[var(--radius-xl)] p-6 text-white [background:linear-gradient(135deg,#1A1D21_0%,#292524_100%)]">
             <div className="mb-3.5 flex items-center gap-2">
               <Clock size={18} className="text-[var(--color-sale)]" />
               <h3 className="text-[0.9375rem] font-bold">Response Times</h3>

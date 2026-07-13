@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import { FaLinkedinIn, FaInstagram } from "react-icons/fa6";
-import { AvontLogo } from "../AvontLogo";
+import { WgelecLogo } from "../WgelecLogo";
 import visaLogo from "@/assets/visa-logo.svg";
 import mastercardLogo from "@/assets/mastercard-logo.svg";
 import pciDssLogo from "@/assets/pci-dss-compliant-logo-vector.svg";
@@ -29,8 +29,8 @@ export function Footer() {
               href="/"
               className="flex items-center gap-2 text-2xl font-extrabold tracking-[-0.04em] text-[var(--color-accent)]"
             >
-              <AvontLogo size={28} />
-              <span>AvontShop</span>
+              <WgelecLogo size={28} />
+              <span>WGELECSHOP</span>
             </Link>
             <p className="max-w-[280px] text-sm leading-relaxed text-[var(--color-text-secondary)]">
               Your trusted source for electrical materials, wiring, and installation supplies. Professional quality delivered to your door.
@@ -96,7 +96,7 @@ export function Footer() {
 
         <div className="flex flex-col items-center gap-4 border-t border-[var(--color-border)] py-6 md:flex-row md:justify-between">
           <p className="text-xs text-[var(--color-text-tertiary)]">
-            {t("copyright", { year: currentYear, storeName: "AvontShop" })}
+            {t("copyright", { year: currentYear, storeName: "WGELECSHOP" })}
           </p>
           <div className="flex items-center gap-3">
             <span className="flex items-center justify-center">

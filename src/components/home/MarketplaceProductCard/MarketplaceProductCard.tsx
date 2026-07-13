@@ -58,7 +58,7 @@ export function MarketplaceProductCard({ product }: Props) {
   return (
     <Link
       href={`/product/${product.slug}`}
-      className="group flex flex-col overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text)] no-underline transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-1 hover:border-[var(--color-border-hover)] hover:shadow-[0_8px_24px_rgba(15,23,42,0.1)]"
+      className="group flex flex-col overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text)] no-underline transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-1 hover:border-[var(--color-border-hover)] hover:shadow-[0_8px_24px_rgba(26,29,33,0.1)]"
     >
       <div className="relative flex aspect-square items-center justify-center overflow-hidden bg-white p-3">
         <Image
@@ -113,7 +113,7 @@ export function MarketplaceProductCard({ product }: Props) {
               key={s}
               size={11}
               fill={s <= 4 ? "#f59e0b" : "none"}
-              stroke={s <= 4 ? "#f59e0b" : "#cbd5e1"}
+              stroke={s <= 4 ? "#f59e0b" : "#D6D3D1"}
             />
           ))}
           <span className="ml-1 text-[0.65rem] text-[var(--color-text-tertiary)]">(12)</span>
@@ -137,7 +137,7 @@ export function MarketplaceProductCard({ product }: Props) {
               "flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-md border-none text-white transition-colors duration-100",
               inStock
                 ? "cursor-pointer bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)]"
-                : "cursor-not-allowed bg-[#cbd5e1]",
+                : "cursor-not-allowed bg-[#D6D3D1]",
             ].join(" ")}
           >
             <ShoppingCart size={15} />

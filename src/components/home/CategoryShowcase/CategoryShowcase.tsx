@@ -49,7 +49,7 @@ export function CategoryShowcase({ categories }: Props) {
           >
             <Link
               href={`/catalog/${cat.slug}`}
-              className="flex items-center gap-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-2.5 text-[var(--color-text)] no-underline transition-[border-color,box-shadow] duration-100 hover:border-[var(--color-border-hover)] hover:shadow-[0_2px_8px_rgba(15,23,42,0.06)] min-[481px]:px-4 min-[481px]:py-3.5"
+              className="flex items-center gap-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-2.5 text-[var(--color-text)] no-underline transition-[border-color,box-shadow] duration-100 hover:border-[var(--color-border-hover)] hover:shadow-[0_2px_8px_rgba(26,29,33,0.06)] min-[481px]:px-4 min-[481px]:py-3.5"
             >
               <div
                 className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-[10px]"

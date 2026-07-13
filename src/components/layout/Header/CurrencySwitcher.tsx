@@ -10,7 +10,7 @@ const CURRENCIES: { code: Currency; symbol: string; label: string }[] = [
 ];
 
 const iconBtnCls =
-  "relative flex h-9 w-auto items-center justify-center rounded-lg border-none bg-transparent px-2 text-[0.8125rem] font-bold text-[#555] transition-colors duration-150 hover:bg-[#f5f5f5] hover:text-[#0f172a] dark:text-[#aaa] dark:hover:bg-[#101a2c] dark:hover:text-white";
+  "relative flex h-9 w-auto items-center justify-center rounded-lg border-none bg-transparent px-2 text-[0.8125rem] font-bold text-[#555] transition-colors duration-150 hover:bg-[#f5f5f5] hover:text-[#1A1D21] dark:text-[#aaa] dark:hover:bg-[#292524] dark:hover:text-white";
 
 export function CurrencySwitcher() {
   const { currency, setCurrency } = useCurrency();
@@ -33,7 +33,7 @@ export function CurrencySwitcher() {
         {current.symbol}
       </button>
       {open && (
-        <div className="absolute right-0 top-full z-[60] mt-1.5 min-w-[120px] overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] shadow-[0_4px_16px_rgba(15,23,42,0.1)]">
+        <div className="absolute right-0 top-full z-[60] mt-1.5 min-w-[120px] overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] shadow-[0_4px_16px_rgba(26,29,33,0.1)]">
           {CURRENCIES.map((c) => {
             const active = c.code === currency;
             return (

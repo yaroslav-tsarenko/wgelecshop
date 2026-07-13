@@ -2,7 +2,7 @@
 
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from "recharts";
 
-const COLORS = ["#0A84FF", "#8b5cf6", "#00C853", "#F59E0B", "#EF4444", "#06b6d4", "#ec4899", "#14b8a6"];
+const COLORS = ["#FF6B1A", "#FFB300", "#292524", "#FF8533", "#E55A0F", "#FFC01A", "#78716C", "#FFA366"];
 
 interface CategoryChartProps {
   data: { name: string; _count: { products: number } }[];
