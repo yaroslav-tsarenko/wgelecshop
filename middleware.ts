@@ -5,8 +5,21 @@ import { verifyTokenEdge } from "@/lib/token-edge";
 
 const intlMiddleware = createMiddleware(routing);
 
+const STATIC_FILES = new Set([
+  "/manifest.webmanifest",
+  "/sitemap.xml",
+  "/robots.txt",
+  "/favicon.ico",
+  "/icon.svg",
+  "/apple-icon.svg",
+]);
+
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  if (STATIC_FILES.has(pathname)) {
+    return NextResponse.next();
+  }
 
   if (pathname.endsWith("/wgelecshop.html")) {
     const url = request.nextUrl.clone();
@@ -32,6 +45,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|images|fonts|icons|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    "/((?!_next/static|_next/image|favicon.ico|manifest.webmanifest|sitemap.xml|robots.txt|images|fonts|icons|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|txt|xml|webmanifest)$).*)",
   ],
 };

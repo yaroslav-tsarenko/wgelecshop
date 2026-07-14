@@ -131,8 +131,16 @@ export async function GET(request: NextRequest) {
       { headers }
     );
   } catch (error) {
-    console.error("Error fetching products:", error);
-    return NextResponse.json({ error: "Failed to fetch products" }, { status: 500 });
+    console.error("products:", error);
+    return NextResponse.json(
+      { data: [], total: 0, page: 1, pageSize: 0, totalPages: 0 },
+      {
+        headers: {
+          "Cache-Control": "public, s-maxage=10, stale-while-revalidate=60",
+          "CDN-Cache-Control": "public, s-maxage=10, stale-while-revalidate=60",
+        },
+      }
+    );
   }
 }
 
