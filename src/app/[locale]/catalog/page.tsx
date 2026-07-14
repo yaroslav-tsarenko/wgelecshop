@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { useSearchParams, useRouter } from "next/navigation";
 import { SlidersHorizontal, X } from "lucide-react";
@@ -11,6 +11,28 @@ import { ProductSkeleton } from "@/components/product/ProductSkeleton/ProductSke
 import { EmptyState } from "@/components/shared/EmptyState/EmptyState";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs/Breadcrumbs";
 import { catalogClasses as styles } from "./catalog-classes";
+
+async function fetchWithRetry(
+  input: string,
+  init?: RequestInit,
+  { retries = 3, backoffMs = 400 }: { retries?: number; backoffMs?: number } = {}
+): Promise<Response> {
+  let lastError: unknown;
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      const res = await fetch(input, init);
+      if (res.ok) return res;
+      if (res.status >= 400 && res.status < 500) return res;
+      lastError = new Error(`HTTP ${res.status}`);
+    } catch (err) {
+      lastError = err;
+    }
+    if (attempt < retries) {
+      await new Promise((r) => setTimeout(r, backoffMs * Math.pow(2, attempt)));
+    }
+  }
+  throw lastError instanceof Error ? lastError : new Error("Fetch failed");
+}
 
 export default function CatalogPage() {
   const t = useTranslations("product");
@@ -25,8 +47,10 @@ export default function CatalogPage() {
   const [total, setTotal] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const [brands, setBrands] = useState<string[]>([]);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const requestIdRef = useRef(0);
 
   const page = parseInt(searchParams.get("page") || "1");
   const sort = searchParams.get("sort") || "newest";
@@ -51,18 +75,28 @@ export default function CatalogPage() {
   );
 
   useEffect(() => {
-    fetch("/api/categories")
+    let cancelled = false;
+    fetchWithRetry("/api/categories")
       .then((res) => res.json())
-      .then((data) => setCategories(Array.isArray(data) ? data : []))
-      .catch(console.error);
-    fetch("/api/products/brands")
+      .then((data) => {
+        if (!cancelled) setCategories(Array.isArray(data) ? data : []);
+      })
+      .catch((err) => console.error("categories:", err));
+    fetchWithRetry("/api/products/brands")
       .then((res) => res.json())
-      .then((data) => setBrands(Array.isArray(data) ? data : []))
-      .catch(console.error);
+      .then((data) => {
+        if (!cancelled) setBrands(Array.isArray(data) ? data : []);
+      })
+      .catch((err) => console.error("brands:", err));
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   useEffect(() => {
+    const reqId = ++requestIdRef.current;
     setLoading(true);
+    setLoadError(false);
     const params = new URLSearchParams();
     params.set("page", String(page));
     params.set("sort", sort);
@@ -73,15 +107,23 @@ export default function CatalogPage() {
     if (onSale) params.set("onSale", "true");
     if (selectedBrand) params.set("brand", selectedBrand);
 
-    fetch(`/api/products?${params}`)
+    fetchWithRetry(`/api/products?${params}`)
       .then((res) => res.json())
       .then((data) => {
+        if (reqId !== requestIdRef.current) return;
         setProducts(data.data || []);
         setTotal(data.total || 0);
         setTotalPages(data.totalPages || 1);
       })
-      .catch(console.error)
-      .finally(() => setLoading(false));
+      .catch((err) => {
+        if (reqId !== requestIdRef.current) return;
+        console.error("products:", err);
+        setLoadError(true);
+      })
+      .finally(() => {
+        if (reqId !== requestIdRef.current) return;
+        setLoading(false);
+      });
   }, [page, sort, category, minPrice, maxPrice, inStock, onSale, selectedBrand]);
 
   useEffect(() => {
@@ -150,8 +192,15 @@ export default function CatalogPage() {
         </aside>
 
         <div className={styles.content}>
-          {loading ? (
+          {loading && products.length === 0 ? (
             <ProductSkeleton count={12} />
+          ) : loadError && products.length === 0 ? (
+            <EmptyState
+              title="Failed to load products"
+              subtitle="Please check your connection and try again."
+              actionLabel="Retry"
+              actionHref={`?${searchParams.toString()}`}
+            />
           ) : products.length === 0 ? (
             <EmptyState
               title={t("filterBy")}

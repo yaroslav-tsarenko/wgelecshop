@@ -109,13 +109,27 @@ export async function GET(request: NextRequest) {
       prisma.product.count({ where }),
     ]);
 
-    return NextResponse.json({
-      data: products,
-      total,
-      page,
-      pageSize,
-      totalPages: Math.ceil(total / pageSize),
-    });
+    const isPublic = !status || status === "ACTIVE";
+    const headers: Record<string, string> = {};
+    if (isPublic) {
+      headers["Cache-Control"] =
+        "public, s-maxage=60, stale-while-revalidate=600, stale-if-error=86400";
+      headers["CDN-Cache-Control"] =
+        "public, s-maxage=60, stale-while-revalidate=600, stale-if-error=86400";
+    } else {
+      headers["Cache-Control"] = "no-store";
+    }
+
+    return NextResponse.json(
+      {
+        data: products,
+        total,
+        page,
+        pageSize,
+        totalPages: Math.ceil(total / pageSize),
+      },
+      { headers }
+    );
   } catch (error) {
     console.error("Error fetching products:", error);
     return NextResponse.json({ error: "Failed to fetch products" }, { status: 500 });

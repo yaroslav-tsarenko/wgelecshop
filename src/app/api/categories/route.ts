@@ -18,12 +18,19 @@ export async function GET(request: NextRequest) {
     const flat = searchParams.get("flat") === "true";
     const includeEmpty = searchParams.get("includeEmpty") === "true";
 
+    const cacheHeaders: Record<string, string> = {
+      "Cache-Control":
+        "public, s-maxage=300, stale-while-revalidate=3600, stale-if-error=86400",
+      "CDN-Cache-Control":
+        "public, s-maxage=300, stale-while-revalidate=3600, stale-if-error=86400",
+    };
+
     if (flat) {
       const categories = await prisma.category.findMany({
         orderBy: { name: "asc" },
         include: { _count: { select: { products: true } } },
       });
-      return NextResponse.json(categories);
+      return NextResponse.json(categories, { headers: cacheHeaders });
     }
 
     const categories = await prisma.category.findMany({
@@ -61,7 +68,9 @@ export async function GET(request: NextRequest) {
         }));
     }
 
-    return NextResponse.json(includeEmpty ? categories : pruneEmpty(categories));
+    return NextResponse.json(includeEmpty ? categories : pruneEmpty(categories), {
+      headers: cacheHeaders,
+    });
   } catch (error) {
     console.error("Error fetching categories:", error);
     return NextResponse.json({ error: "Failed to fetch categories" }, { status: 500 });

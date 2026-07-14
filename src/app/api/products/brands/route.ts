@@ -11,7 +11,14 @@ export async function GET() {
     });
 
     const brands = products.map((p) => p.brand).filter(Boolean) as string[];
-    return NextResponse.json(brands);
+    return NextResponse.json(brands, {
+      headers: {
+        "Cache-Control":
+          "public, s-maxage=300, stale-while-revalidate=3600, stale-if-error=86400",
+        "CDN-Cache-Control":
+          "public, s-maxage=300, stale-while-revalidate=3600, stale-if-error=86400",
+      },
+    });
   } catch {
     return NextResponse.json([], { status: 500 });
   }
