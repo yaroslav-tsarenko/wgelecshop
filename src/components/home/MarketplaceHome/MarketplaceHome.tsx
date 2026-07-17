@@ -145,7 +145,7 @@ export function MarketplaceHome({ data }: Props) {
                 viewAllHref="/catalog?sort=popular"
                 viewAllLabel="View all popular"
                 bg="white"
-                columns={5}
+                columns={4}
               />
             )}
 
@@ -159,7 +159,7 @@ export function MarketplaceHome({ data }: Props) {
                 viewAllHref={`/catalog/${cs.category.slug}`}
                 viewAllLabel={`All ${cs.category.name}`}
                 bg={i % 2 === 1 ? "gray" : "white"}
-                columns={5}
+                columns={4}
               />
             ))}
 
@@ -181,7 +181,7 @@ export function MarketplaceHome({ data }: Props) {
                 viewAllHref={`/catalog/${cs.category.slug}`}
                 viewAllLabel={`All ${cs.category.name}`}
                 bg={i % 2 === 0 ? "gray" : "white"}
-                columns={5}
+                columns={4}
               />
             ))}
 
@@ -214,7 +214,7 @@ export function MarketplaceHome({ data }: Props) {
                 viewAllHref="/catalog?sort=newest"
                 viewAllLabel="View all new"
                 bg="gray"
-                columns={5}
+                columns={4}
               />
             )}
           </div>

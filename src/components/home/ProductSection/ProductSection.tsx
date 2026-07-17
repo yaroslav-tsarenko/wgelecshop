@@ -109,7 +109,7 @@ export function ProductSection({
       <div
         className={[
           "grid gap-2 min-[481px]:gap-3",
-          "grid-cols-2 md:grid-cols-3 min-[1025px]:grid-cols-4",
+          "grid-cols-2 md:grid-cols-4",
           gridColsCls[columns] || gridColsCls[5],
         ].join(" ")}
       >
