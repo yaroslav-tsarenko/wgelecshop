@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
@@ -32,8 +33,10 @@ export function ProductCard({
 }: ProductCardProps) {
   const t = useTranslations("product");
   const { addItem } = useCart();
+  const [imageFailed, setImageFailed] = useState(false);
   const isOnSale = comparePrice && comparePrice > price;
   const outOfStock = quantity <= 0;
+  const showImage = imageUrl && !imageFailed;
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -62,7 +65,7 @@ export function ProductCard({
       className="group flex min-w-0 flex-col overflow-hidden rounded-[var(--radius-xl)] border border-[var(--color-border)] bg-[var(--color-bg)] transition-[transform,box-shadow] duration-300 ease-[var(--ease-out-expo)] hover:-translate-y-1.5 hover:shadow-[var(--shadow-card-hover)]"
     >
       <div className="relative aspect-square overflow-hidden bg-white">
-        {imageUrl ? (
+        {showImage ? (
           <div className="absolute inset-1.5 sm:inset-3">
             <Image
               src={imageUrl}
@@ -70,6 +73,7 @@ export function ProductCard({
               fill
               sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
               className="object-contain transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:scale-[1.06]"
+              onError={() => setImageFailed(true)}
             />
           </div>
         ) : (

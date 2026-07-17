@@ -65,7 +65,7 @@ const defaultSlides: DefaultSlide[] = [
     bgColor: "#111827",
     textColor: "#ffffff",
     bgImage:
-      "https://images.unsplash.com/photo-1543198126-a4b1f2e8c7c8?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1550985616-10810253b84d?auto=format&fit=crop&w=1600&q=80",
   },
   {
     id: "3",
@@ -78,7 +78,7 @@ const defaultSlides: DefaultSlide[] = [
     bgColor: "#1a1330",
     textColor: "#ffffff",
     bgImage:
-      "https://images.unsplash.com/photo-1481414085319-9f3b5000c5f8?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1482160549825-59d1b23cb208?auto=format&fit=crop&w=1600&q=80",
   },
   {
     id: "4",
@@ -107,6 +107,7 @@ export function HeroCarousel({ slides, deals }: Props) {
   const useDefaults = slides.length === 0;
   const activeSlides = useDefaults ? defaultSlides : slides;
   const [current, setCurrent] = useState(0);
+  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
 
   const next = useCallback(() => {
     setCurrent((p) => (p + 1) % activeSlides.length);
@@ -123,7 +124,8 @@ export function HeroCarousel({ slides, deals }: Props) {
   }, [next, activeSlides.length]);
 
   const slide = activeSlides[current];
-  const bgImage = useDefaults ? (slide as DefaultSlide).bgImage : null;
+  const rawBgImage = useDefaults ? (slide as DefaultSlide).bgImage : null;
+  const bgImage = rawBgImage && !failedImages[rawBgImage] ? rawBgImage : null;
 
   return (
     <div className="mb-4 flex gap-3">
@@ -142,6 +144,9 @@ export function HeroCarousel({ slides, deals }: Props) {
                 className="z-0 object-cover object-center"
                 priority={current === 0}
                 unoptimized
+                onError={() =>
+                  setFailedImages((prev) => ({ ...prev, [bgImage]: true }))
+                }
               />
               <div className="absolute inset-0 z-[1] bg-[linear-gradient(to_right,rgba(0,0,0,0.75)_0%,rgba(0,0,0,0.45)_55%,rgba(0,0,0,0.15)_100%)]" />
             </>
