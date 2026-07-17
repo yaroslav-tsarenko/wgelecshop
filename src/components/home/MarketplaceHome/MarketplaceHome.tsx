@@ -5,6 +5,7 @@ import { PromoStrip } from "../PromoStrip/PromoStrip";
 import { CategorySidebar } from "../CategorySidebar/CategorySidebar";
 import { HorizontalTabs } from "../HorizontalTabs/HorizontalTabs";
 import { HeroCarousel } from "../HeroCarousel/HeroCarousel";
+import { CategoryShowcase } from "../CategoryShowcase/CategoryShowcase";
 import { PromoBannerGrid } from "../PromoBannerGrid/PromoBannerGrid";
 import { BrandStrip } from "../BrandStrip/BrandStrip";
 import { ProductSection } from "../ProductSection/ProductSection";
@@ -112,7 +113,7 @@ export function MarketplaceHome({ data }: Props) {
     heroSlides, dealCards, promoSmall, promoWide,
     brands, sections, tabs, utilityLinks, promoStripItems,
     sectionProducts, saleProducts, newProducts,
-    popularProducts, categorySections,
+    popularProducts, categorySections, categoryShowcase,
   } = data;
 
   return (
@@ -133,6 +134,7 @@ export function MarketplaceHome({ data }: Props) {
 
             {tabs.length > 0 && <HorizontalTabs tabs={tabs} />}
             <HeroCarousel slides={heroSlides} deals={dealCards} />
+            <CategoryShowcase categories={categoryShowcase} />
             <PromoBannerGrid smallBanners={promoSmall} wideBanners={promoWide} />
 
             {popularProducts.length > 0 && (

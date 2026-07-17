@@ -27,6 +27,7 @@ export async function GET(request: NextRequest) {
 
     if (flat) {
       const categories = await prisma.category.findMany({
+        where: { isActive: true },
         orderBy: { name: "asc" },
         include: { _count: { select: { products: true } } },
       });
@@ -34,16 +35,18 @@ export async function GET(request: NextRequest) {
     }
 
     const categories = await prisma.category.findMany({
-      where: { parentId: null },
-      orderBy: { name: "asc" },
+      where: { parentId: null, isActive: true },
+      orderBy: [{ sortOrder: "asc" }, { name: "asc" }],
       include: {
         _count: { select: { products: true } },
         children: {
-          orderBy: { name: "asc" },
+          where: { isActive: true },
+          orderBy: [{ sortOrder: "asc" }, { name: "asc" }],
           include: {
             _count: { select: { products: true } },
             children: {
-              orderBy: { name: "asc" },
+              where: { isActive: true },
+              orderBy: [{ sortOrder: "asc" }, { name: "asc" }],
               include: {
                 _count: { select: { products: true } },
               },

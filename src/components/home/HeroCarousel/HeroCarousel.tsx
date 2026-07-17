@@ -1,12 +1,9 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import Image, { type StaticImageData } from "next/image";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "@/i18n/routing";
-import banner1 from "@/assets/banner1.png";
-import banner2 from "@/assets/banner2.png";
-import banner3 from "@/assets/banner3.png";
 
 interface SlideData {
   id: string;
@@ -40,50 +37,63 @@ interface DefaultSlide {
   linkUrl: string;
   bgColor: string;
   textColor: string;
-  bgImage: StaticImageData;
+  bgImage: string;
 }
 
 const defaultSlides: DefaultSlide[] = [
   {
     id: "1",
-    badgeText: "Professional Grade",
-    title: "Switchgear & Distribution Boards",
-    subtitle: "Certified panels, circuit breakers, and modular enclosures for residential and commercial installations",
-    ctaLabel: "Shop Now",
-    linkUrl: "/catalog",
-    bgColor: "#1A1D21",
+    badgeText: "New Season",
+    title: "Illuminate every room",
+    subtitle:
+      "Designer chandeliers, pendants and table lamps to transform your home — free EU shipping over €80.",
+    ctaLabel: "Shop Ceiling Lights",
+    linkUrl: "/catalog/ceiling-lights",
+    bgColor: "#0b1120",
     textColor: "#ffffff",
-    bgImage: banner1,
+    bgImage:
+      "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=1600&q=80",
   },
   {
     id: "2",
-    badgeText: "Complete Range",
-    title: "Industrial Control & Automation",
-    subtitle: "From compact enclosures to full-size distribution cabinets — everything for your next project",
-    ctaLabel: "Browse Equipment",
-    linkUrl: "/catalog",
-    bgColor: "#FAFAF9",
+    badgeText: "Smart & Efficient",
+    title: "Energy-saving LED bulbs",
+    subtitle:
+      "E27, E14, GU10 and tubes — warm, neutral and cool white options ready to ship next-day.",
+    ctaLabel: "Browse Bulbs",
+    linkUrl: "/catalog/bulbs-tubes",
+    bgColor: "#111827",
     textColor: "#ffffff",
-    bgImage: banner2,
+    bgImage:
+      "https://images.unsplash.com/photo-1543198126-a4b1f2e8c7c8?auto=format&fit=crop&w=1600&q=80",
   },
   {
     id: "3",
-    badgeText: "Top Quality",
-    title: "Cables, Wiring & Connectors",
-    subtitle: "Premium copper cables, flexible wiring, terminal blocks and accessories at wholesale prices",
-    ctaLabel: "View Cables",
-    linkUrl: "/catalog",
-    bgColor: "#0b1120",
+    badgeText: "Cosy Vibes",
+    title: "String & fairy lights",
+    subtitle:
+      "Turn any space into a warm haven with LED garlands, curtain lights and festive decorations.",
+    ctaLabel: "See Decorative Lights",
+    linkUrl: "/catalog/string-fairy-lights",
+    bgColor: "#1a1330",
     textColor: "#ffffff",
-    bgImage: banner3,
+    bgImage:
+      "https://images.unsplash.com/photo-1481414085319-9f3b5000c5f8?auto=format&fit=crop&w=1600&q=80",
+  },
+  {
+    id: "4",
+    badgeText: "Outdoor Ready",
+    title: "Solar garden lights",
+    subtitle:
+      "Path lights, spotlights and wall lanterns that charge by day and shine all night — zero wiring.",
+    ctaLabel: "Explore Solar",
+    linkUrl: "/catalog/solar-lights",
+    bgColor: "#0f172a",
+    textColor: "#ffffff",
+    bgImage:
+      "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1600&q=80",
   },
 ];
-
-const bgImageMap: Record<string, StaticImageData> = {
-  "1": banner1,
-  "2": banner2,
-  "3": banner3,
-};
 
 interface Props {
   slides: SlideData[];
@@ -113,9 +123,7 @@ export function HeroCarousel({ slides, deals }: Props) {
   }, [next, activeSlides.length]);
 
   const slide = activeSlides[current];
-  const bgImage = useDefaults
-    ? (slide as DefaultSlide).bgImage
-    : bgImageMap[slide.id] || null;
+  const bgImage = useDefaults ? (slide as DefaultSlide).bgImage : null;
 
   return (
     <div className="mb-4 flex gap-3">
@@ -131,10 +139,11 @@ export function HeroCarousel({ slides, deals }: Props) {
                 alt=""
                 fill
                 sizes="(max-width: 1024px) 100vw, 75vw"
-                className="z-0 object-cover object-[center_right]"
+                className="z-0 object-cover object-center"
                 priority={current === 0}
+                unoptimized
               />
-              <div className="absolute inset-0 z-[1] bg-[linear-gradient(to_right,rgba(0,0,0,0.6)_0%,rgba(0,0,0,0.35)_50%,rgba(0,0,0,0.05)_100%)]" />
+              <div className="absolute inset-0 z-[1] bg-[linear-gradient(to_right,rgba(0,0,0,0.75)_0%,rgba(0,0,0,0.45)_55%,rgba(0,0,0,0.15)_100%)]" />
             </>
           )}
           <div className="relative z-[2] max-w-[500px] p-6 sm:p-10">

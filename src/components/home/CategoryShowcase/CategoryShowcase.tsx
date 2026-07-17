@@ -1,14 +1,18 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { motion, useInView } from "framer-motion";
-import { Package } from "lucide-react";
+import { Lightbulb } from "lucide-react";
 
-const COLORS = [
-  "#EDE9FE", "#FCE7F3", "#DCFCE7", "#FEF3C7",
-  "#DBEAFE", "#E0E7FF", "#F3E8FF", "#FEE2E2",
-  "#CFFAFE", "#FFF7ED", "#ECFDF5", "#FEF9C3",
+const GRADIENTS = [
+  "linear-gradient(135deg,#0f172a 0%,#1e293b 100%)",
+  "linear-gradient(135deg,#1a1330 0%,#2d1b5b 100%)",
+  "linear-gradient(135deg,#0b1120 0%,#1f2937 100%)",
+  "linear-gradient(135deg,#111827 0%,#334155 100%)",
+  "linear-gradient(135deg,#1a1a2e 0%,#3b0764 100%)",
+  "linear-gradient(135deg,#0b132b 0%,#3a506b 100%)",
 ];
 
 interface CategoryItem {
@@ -37,29 +41,50 @@ export function CategoryShowcase({ categories }: Props) {
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="m-0 text-lg font-extrabold text-[var(--color-text)]">Shop by Category</h2>
+        <div>
+          <h2 className="m-0 text-lg font-extrabold text-[var(--color-text)] sm:text-xl">
+            Shop by Category
+          </h2>
+          <p className="mt-1 text-xs text-[var(--color-text-tertiary)] sm:text-sm">
+            From ambient chandeliers to tough LED bulbs — pick your vibe
+          </p>
+        </div>
       </motion.div>
-      <div className="grid grid-cols-2 gap-2 min-[481px]:gap-3 md:grid-cols-3 min-[1201px]:grid-cols-4">
+      <div className="grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {categories.map((cat, i) => (
           <motion.div
             key={cat.id}
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.94 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.35, delay: i * 0.06 }}
+            transition={{ duration: 0.35, delay: i * 0.04 }}
           >
             <Link
               href={`/catalog/${cat.slug}`}
-              className="flex items-center gap-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-2.5 text-[var(--color-text)] no-underline transition-[border-color,box-shadow] duration-100 hover:border-[var(--color-border-hover)] hover:shadow-[0_2px_8px_rgba(26,29,33,0.06)] min-[481px]:px-4 min-[481px]:py-3.5"
+              className="group relative flex aspect-[4/3] overflow-hidden rounded-xl no-underline shadow-sm ring-1 ring-black/5 transition-shadow duration-200 hover:shadow-lg"
+              style={{ background: GRADIENTS[i % GRADIENTS.length] }}
             >
-              <div
-                className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-[10px]"
-                style={{ background: COLORS[i % COLORS.length] }}
-              >
-                <Package size={22} />
-              </div>
-              <div className="min-w-0">
-                <h3 className="m-0 mb-0.5 truncate text-[0.8125rem] font-bold">{cat.name}</h3>
-                <span className="text-[0.7rem] text-[var(--color-text-tertiary)]">{cat.productCount} products</span>
+              {cat.imageUrl ? (
+                <Image
+                  src={cat.imageUrl}
+                  alt={cat.name}
+                  fill
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                  className="object-cover opacity-70 transition-transform duration-300 group-hover:scale-105 group-hover:opacity-80"
+                  unoptimized
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center opacity-40">
+                  <Lightbulb size={64} className="text-white" />
+                </div>
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
+              <div className="relative z-[1] mt-auto flex w-full flex-col gap-1 p-3 text-white sm:p-4">
+                <h3 className="m-0 text-sm font-bold leading-tight sm:text-base">
+                  {cat.name}
+                </h3>
+                <span className="text-[0.7rem] font-medium text-white/80 sm:text-xs">
+                  {cat.productCount}+ products
+                </span>
               </div>
             </Link>
           </motion.div>

@@ -133,16 +133,19 @@ async function getHomeData() {
             p.categories?.some((pc) => childSlugs.includes(pc.category.slug))
           ).length
         : 0;
+      const sample = products.find((p: { categories?: { category: { slug: string } }[]; images?: { url: string }[] }) =>
+        p.categories?.some((pc) => pc.category.slug === c.slug || childSlugs.includes(pc.category.slug))
+      );
       return {
         id: c.id,
         name: c.name,
         slug: c.slug,
-        imageUrl: null as string | null,
+        imageUrl: sample?.images?.[0]?.url ?? null,
         productCount: directCount + childProductCount,
       };
     }).filter((c) => c.productCount > 0)
       .sort((a, b) => b.productCount - a.productCount)
-      .slice(0, 8);
+      .slice(0, 15);
 
     return serialize({
       heroSlides,
