@@ -13,7 +13,7 @@ export default function PaymentPolicyPage() {
       <ContactBlock />
       <p>
         In this Policy, &ldquo;WGELECSHOP&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo; or &ldquo;our&rdquo;
-        means WGELECSHOP LTD. &ldquo;Customer&rdquo;, &ldquo;you&rdquo; or &ldquo;your&rdquo; means any
+        means AVONTRA LTD. &ldquo;Customer&rdquo;, &ldquo;you&rdquo; or &ldquo;your&rdquo; means any
         person or business placing an order through the Website.
       </p>
       <p>

@@ -6,7 +6,7 @@ export default function PrivacyPolicyPage() {
   return (
     <PolicyLayout title="Privacy Policy" lastUpdated="29 May 2026">
       <p>
-        This Privacy Policy explains how WGELECSHOP LTD, trading as WGELECSHOP, collects, uses, stores, shares,
+        This Privacy Policy explains how AVONTRA LTD, trading as WGELECSHOP, collects, uses, stores, shares,
         and protects personal data when you visit www.wgelecshop.com, create an account, place an order,
         contact us, use our services, or otherwise interact with us.
       </p>
@@ -14,7 +14,7 @@ export default function PrivacyPolicyPage() {
       <ContactBlock />
       <p>
         In this Privacy Policy, &ldquo;WGELECSHOP&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo; or
-        &ldquo;our&rdquo; means WGELECSHOP LTD. &ldquo;Customer&rdquo;, &ldquo;you&rdquo; or
+        &ldquo;our&rdquo; means AVONTRA LTD. &ldquo;Customer&rdquo;, &ldquo;you&rdquo; or
         &ldquo;your&rdquo; means any person using the Website, placing an order, creating an account,
         contacting us, or interacting with our services.
       </p>
@@ -48,7 +48,7 @@ export default function PrivacyPolicyPage() {
       <p>
         2.1 For the purposes of applicable data protection laws, including the UK General Data Protection
         Regulation, the Data Protection Act 2018, and, where applicable, the EU General Data Protection
-        Regulation, WGELECSHOP LTD is the data controller of your personal data.
+        Regulation, AVONTRA LTD is the data controller of your personal data.
       </p>
       <p>2.2 This means we determine why and how your personal data is processed.</p>
       <p>2.3 You can contact us about privacy matters using the following details:</p>

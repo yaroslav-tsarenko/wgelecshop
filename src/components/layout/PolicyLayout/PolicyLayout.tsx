@@ -45,11 +45,13 @@ export function ContactBlock() {
   return (
     <div className="mt-2 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-bg-secondary)] px-4 py-3.5 text-sm leading-[1.7]">
       <p>
-        <strong>WGELECSHOP LTD</strong>
+        <strong>AVONTRA LTD</strong>
         <br />
         Company number: 17245887
         <br />
         Registered office: Dept 6735, 196 High Road, Wood Green, London, United Kingdom, N22 8HH
+        <br />
+        Director: Helen CHAMPION
         <br />
         Phone: +44 7360 545980
         <br />

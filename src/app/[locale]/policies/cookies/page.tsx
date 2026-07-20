@@ -6,14 +6,14 @@ export default function CookiePolicyPage() {
   return (
     <PolicyLayout title="Cookie Policy" lastUpdated="29 May 2026">
       <p>
-        This Cookie Policy explains how WGELECSHOP LTD, trading as WGELECSHOP, uses cookies and similar
+        This Cookie Policy explains how AVONTRA LTD, trading as WGELECSHOP, uses cookies and similar
         technologies on www.wgelecshop.com.
       </p>
       <p>The Website is operated by:</p>
       <ContactBlock />
       <p>
         In this Cookie Policy, &ldquo;WGELECSHOP&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo; or
-        &ldquo;our&rdquo; means WGELECSHOP LTD. &ldquo;You&rdquo; or &ldquo;your&rdquo; means any visitor,
+        &ldquo;our&rdquo; means AVONTRA LTD. &ldquo;You&rdquo; or &ldquo;your&rdquo; means any visitor,
         customer, account holder, business customer, or user of the Website.
       </p>
       <p>

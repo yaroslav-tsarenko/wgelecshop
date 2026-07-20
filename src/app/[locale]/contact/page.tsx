@@ -23,7 +23,7 @@ const errorCls = "mt-1 text-xs text-[var(--color-danger)]";
 const CONTACT_INFO = [
   { icon: Mail, title: "Email Us", detail: "info@wgelecshop.com", sub: "We reply within 24 hours" },
   { icon: Phone, title: "Call Us", detail: "+44 7360 545980", sub: "Mon-Fri 9:00-18:00 GMT" },
-  { icon: MapPin, title: "Our Office", detail: "London, United Kingdom", sub: "WGELECSHOP LTD", tooltip: "Dept 6735, 196 High Road, Wood Green, London, N22 8HH, UK\nCompany No. 17245887" },
+  { icon: MapPin, title: "Our Office", detail: "London, United Kingdom", sub: "AVONTRA LTD", tooltip: "AVONTRA LTD\nCompany No. 17245887\nDept 6735, 196 High Road, Wood Green, London, United Kingdom, N22 8HH\nDirector: Helen CHAMPION" },
   { icon: Clock, title: "Working Hours", detail: "Mon-Fri 9:00-18:00", sub: "Sat 10:00-14:00" },
 ];
 

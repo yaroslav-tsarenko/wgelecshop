@@ -13,7 +13,7 @@ export default function TermsPage() {
       <p>The Website is operated by:</p>
       <ContactBlock />
       <p>
-        In these Terms, &ldquo;WGELECSHOP&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo; or &ldquo;our&rdquo; means WGELECSHOP LTD.
+        In these Terms, &ldquo;WGELECSHOP&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo; or &ldquo;our&rdquo; means AVONTRA LTD.
         &ldquo;Customer&rdquo;, &ldquo;you&rdquo; or &ldquo;your&rdquo; means any person or business accessing the
         Website, placing an order, purchasing goods, or otherwise using our services.
       </p>
@@ -626,7 +626,7 @@ export default function TermsPage() {
       <p>
         21.1 All content on the Website, including text, layout, branding, logos, graphics, icons, product
         descriptions, photographs, videos, design elements, and other materials, belongs to WGELECSHOP,
-        WGELECSHOP LTD, suppliers, manufacturers, licensors, or other rights holders.
+        AVONTRA LTD, suppliers, manufacturers, licensors, or other rights holders.
       </p>
       <p>
         21.2 You may use the Website only for personal, business, or purchasing purposes in accordance with
