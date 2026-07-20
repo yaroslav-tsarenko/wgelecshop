@@ -27,8 +27,10 @@ export function CurrencyProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const stored = localStorage.getItem("currency") as Currency | null;
-    if (stored && ["EUR", "USD", "GBP"].includes(stored)) {
+    if (stored === "EUR") {
       setCurrencyState(stored);
+    } else if (stored) {
+      localStorage.removeItem("currency");
     }
   }, []);
 

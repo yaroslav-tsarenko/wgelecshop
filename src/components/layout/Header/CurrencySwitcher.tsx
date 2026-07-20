@@ -23,7 +23,7 @@ export function CurrencySwitcher() {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  const current = CURRENCIES.find((c) => c.code === currency)!;
+  const current = CURRENCIES.find((c) => c.code === currency) ?? CURRENCIES[0];
 
   return (
     <div ref={ref} className="relative">
