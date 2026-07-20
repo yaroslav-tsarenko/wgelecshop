@@ -35,6 +35,19 @@ export function Footer() {
             <p className="max-w-[280px] text-sm leading-relaxed text-[var(--color-text-secondary)]">
               Your trusted source for electrical materials, wiring, and installation supplies. Professional quality delivered to your door.
             </p>
+            <address className="max-w-[280px] text-xs not-italic leading-relaxed text-[var(--color-text-tertiary)]">
+              <strong className="text-[var(--color-text-secondary)]">AVONTRA LTD</strong>
+              <br />
+              Company number: 17245887
+              <br />
+              Dept 6735, 196 High Road, Wood Green, London, United Kingdom, N22 8HH
+              <br />
+              Director: Helen CHAMPION
+              <br />
+              <a href="tel:+447360545980" className="transition-colors hover:text-[var(--color-accent)]">
+                +44 7360 545980
+              </a>
+            </address>
             <div className="mt-2 flex gap-2">
               {process.env.NEXT_PUBLIC_LINKEDIN_URL && (
                 <a

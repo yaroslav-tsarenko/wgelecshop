@@ -21,6 +21,11 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // Russian locale is not supported — /ru must never resolve to a route.
+  if (pathname === "/ru" || pathname.startsWith("/ru/")) {
+    return new NextResponse(null, { status: 404 });
+  }
+
   if (pathname.endsWith("/wgelecshop.html")) {
     const url = request.nextUrl.clone();
     url.pathname = "/wgelecshop.html";
