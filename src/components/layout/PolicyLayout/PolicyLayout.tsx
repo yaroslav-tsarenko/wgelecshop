@@ -1,5 +1,6 @@
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs/Breadcrumbs";
 import { ReactNode } from "react";
+import { COMPANY, COMPANY_ADDRESS } from "@/lib/company";
 
 interface PolicyLayoutProps {
   title: string;
@@ -45,17 +46,17 @@ export function ContactBlock() {
   return (
     <div className="mt-2 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-bg-secondary)] px-4 py-3.5 text-sm leading-[1.7]">
       <p>
-        <strong>AVONTRA LTD</strong>
+        <strong>{COMPANY.legalName}</strong>
         <br />
-        Company number: 17245887
+        Company number: {COMPANY.companyNumber}
         <br />
-        Registered office: Dept 6735, 196 High Road, Wood Green, London, United Kingdom, N22 8HH
+        Registered office: {COMPANY_ADDRESS}
         <br />
-        Director: Helen CHAMPION
+        Director: {COMPANY.director}
         <br />
-        Phone: +44 7360 545980
+        Phone: {COMPANY.phone}
         <br />
-        Email: info@wgelecshop.com
+        Email: {COMPANY.email}
       </p>
     </div>
   );

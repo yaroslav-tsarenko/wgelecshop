@@ -17,6 +17,8 @@ import { checkoutSchema, type CheckoutFormData } from "@/lib/validators/checkout
 import { formatPrice } from "@/lib/utils/format-price";
 import { COUNTRIES } from "@/lib/countries";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs/Breadcrumbs";
+import { MerchantLocation } from "@/components/checkout/MerchantLocation";
+import { TermsConsent } from "@/components/ui/TermsConsent";
 import { toast } from "sonner";
 import { checkoutClasses as styles } from "./checkout-classes";
 import {
@@ -143,6 +145,7 @@ export default function CheckoutPage() {
         country: "",
       },
       shippingMethod: "standard",
+      termsAccepted: false,
     },
   });
 
@@ -608,6 +611,24 @@ export default function CheckoutPage() {
                   ))}
                 </div>
 
+                <MerchantLocation
+                  title={t("merchantLocationTitle")}
+                  description={t("merchantLocationNote")}
+                />
+
+                <TermsConsent
+                  error={errors.termsAccepted ? t("termsRequired") : undefined}
+                  label={t.rich("termsConsent", {
+                    terms: (chunks) => (
+                      <Link href="/policies/terms" target="_blank">{chunks}</Link>
+                    ),
+                    privacy: (chunks) => (
+                      <Link href="/policies/privacy" target="_blank">{chunks}</Link>
+                    ),
+                  })}
+                  {...register("termsAccepted")}
+                />
+
                 <div style={{ display: "flex", gap: "0.75rem", marginTop: "0.5rem" }}>
                   <Button variant="bordered" size="lg" onPress={() => setStep(1)} style={{ flex: "0 0 auto" }}>
                     Back
@@ -833,6 +854,13 @@ export default function CheckoutPage() {
               <Lock size={14} />
               Your data is protected
             </div>
+          </div>
+
+          <div style={{ marginTop: "1.25rem" }}>
+            <MerchantLocation
+              title={t("merchantLocationTitle")}
+              description={t("merchantLocationNote")}
+            />
           </div>
         </motion.div>
       </div>

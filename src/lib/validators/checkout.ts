@@ -33,6 +33,9 @@ export const checkoutSchema = z.object({
   contact: checkoutContactSchema,
   shipping: checkoutShippingSchema,
   shippingMethod: z.string().min(1, "Shipping method is required"),
+  termsAccepted: z.boolean().refine((v) => v === true, {
+    message: "You must accept the Terms and Conditions and the Privacy Policy",
+  }),
   notes: z.string().optional(),
   discountCode: z.string().optional(),
 });

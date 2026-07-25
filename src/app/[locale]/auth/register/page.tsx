@@ -12,6 +12,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { COUNTRIES } from "@/lib/countries";
 import { authClasses as styles } from "../auth-classes";
+import { TermsConsent } from "@/components/ui/TermsConsent";
 
 function getPasswordStrength(password: string): { level: number; label: string; color: string } {
   if (password.length === 0) return { level: 0, label: "", color: "transparent" };
@@ -36,6 +37,7 @@ interface FormData {
   dateOfBirth: string;
   password: string;
   confirmPassword: string;
+  termsAccepted: boolean;
 }
 
 const initialForm: FormData = {
@@ -50,6 +52,7 @@ const initialForm: FormData = {
   dateOfBirth: "",
   password: "",
   confirmPassword: "",
+  termsAccepted: false,
 };
 
 export default function RegisterPage() {
@@ -69,6 +72,12 @@ export default function RegisterPage() {
   const set = (field: keyof FormData) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm((prev) => ({ ...prev, [field]: e.target.value }));
     setErrors((prev) => ({ ...prev, [field]: undefined }));
+  };
+
+  const setTermsAccepted = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { checked } = e.target;
+    setForm((prev) => ({ ...prev, termsAccepted: checked }));
+    setErrors((prev) => ({ ...prev, termsAccepted: undefined }));
   };
 
   function validateStep(s: number): boolean {
@@ -95,6 +104,7 @@ export default function RegisterPage() {
       if (!form.password) errs.password = "Password is required";
       else if (form.password.length < 6) errs.password = "Min 6 characters";
       if (form.password !== form.confirmPassword) errs.confirmPassword = "Passwords do not match";
+      if (!form.termsAccepted) errs.termsAccepted = t("termsRequired");
     }
     setErrors(errs);
     return Object.keys(errs).length === 0;
@@ -125,6 +135,7 @@ export default function RegisterPage() {
           postalCode: form.postalCode,
           dateOfBirth: form.dateOfBirth,
           password: form.password,
+          termsAccepted: form.termsAccepted,
         }),
       });
       const data = await res.json();
@@ -540,11 +551,19 @@ export default function RegisterPage() {
                   {renderError("confirmPassword")}
                 </div>
 
-                <p className={styles.termsText}>
-                  By creating an account, you agree to our{" "}
-                  <Link href="/policies/terms">Terms of Service</Link> and{" "}
-                  <Link href="/policies/privacy">Privacy Policy</Link>.
-                </p>
+                <TermsConsent
+                  checked={form.termsAccepted}
+                  onChange={setTermsAccepted}
+                  error={errors.termsAccepted}
+                  label={t.rich("termsConsent", {
+                    terms: (chunks) => (
+                      <Link href="/policies/terms" target="_blank">{chunks}</Link>
+                    ),
+                    privacy: (chunks) => (
+                      <Link href="/policies/privacy" target="_blank">{chunks}</Link>
+                    ),
+                  })}
+                />
 
                 <div style={{ display: "flex", gap: "0.75rem" }} className={styles.submitButton}>
                   <Button type="button" variant="bordered" onPress={goBack}>
@@ -560,7 +579,7 @@ export default function RegisterPage() {
         </form>
 
         <p className={styles.authFooter}>
-          {t("haveAccount")}{" "}
+          {t("hasAccount")}{" "}
           <Link href="/auth/login">{t("signIn")}</Link>
         </p>
       </motion.div>

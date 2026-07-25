@@ -7,8 +7,15 @@ export async function POST(request: NextRequest) {
   try {
     const {
       email, password, firstName, lastName, phone,
-      street, city, country, postalCode, dateOfBirth,
+      street, city, country, postalCode, dateOfBirth, termsAccepted,
     } = await request.json();
+
+    if (termsAccepted !== true) {
+      return NextResponse.json(
+        { error: "You must accept the Terms and Conditions and the Privacy Policy" },
+        { status: 400 },
+      );
+    }
 
     if (!email || !password) {
       return NextResponse.json({ error: "Email and password required" }, { status: 400 });

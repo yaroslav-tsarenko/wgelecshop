@@ -138,7 +138,11 @@
     "country": "Country",
     "phone": "Phone",
     "orderSummary": "Order Summary",
-    "processing": "Processing your order..."
+    "processing": "Processing your order...",
+    "merchantLocationTitle": "Tirgotāja tirdzniecības vietas adrese",
+    "merchantLocationNote": "Jūsu pasūtījumu pārdod un nosūta šis tirgotājs. Šī ir tirgotāja reģistrētā tirdzniecības vietas adrese, un šis nosaukums parādīsies jūsu maksājumu kartes izrakstā.",
+    "termsConsent": "Esmu izlasījis un piekrītu <terms>Noteikumiem un nosacījumiem</terms> un <privacy>Privātuma politikai</privacy>.",
+    "termsRequired": "Lai veiktu pasūtījumu, jums jāpiekrīt Noteikumiem un nosacījumiem un Privātuma politikai."
   },
   "account": {
     "title": "My Account",
@@ -178,7 +182,8 @@
     "signIn": "Sign in",
     "magicLink": "Send Magic Link",
     "magicLinkSent": "Check your email for a login link",
-    "termsAgree": "By signing up, you agree to our {terms} and {privacy}",
+    "termsConsent": "Esmu izlasījis un piekrītu <terms>Noteikumiem un nosacījumiem</terms> un <privacy>Privātuma politikai</privacy>.",
+    "termsRequired": "Lai izveidotu kontu, jums jāpiekrīt Noteikumiem un nosacījumiem un Privātuma politikai.",
     "forgotPasswordTitle": "Aizmirsāt paroli",
     "forgotPasswordSubtitle": "Ievadiet savu e-pastu un mēs nosūtīsim atiestatīšanas saiti",
     "sendResetLink": "Nosūtīt saiti",

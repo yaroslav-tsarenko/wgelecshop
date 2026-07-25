@@ -69,7 +69,4 @@ export const authClasses = {
   strengthBar: "h-full rounded-sm transition-[width,background-color] duration-300",
 
   strengthText: "mt-1 text-xs transition-colors duration-300",
-
-  termsText:
-    "m-0 text-[0.8125rem] leading-relaxed text-[var(--color-text-tertiary)] [&_a]:text-[var(--color-accent)] [&_a]:no-underline [&_a:hover]:underline",
 } as const;

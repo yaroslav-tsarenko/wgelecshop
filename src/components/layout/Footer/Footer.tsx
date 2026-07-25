@@ -5,6 +5,7 @@ import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import { FaLinkedinIn, FaInstagram } from "react-icons/fa6";
 import { WgelecLogo } from "../WgelecLogo";
+import { COMPANY, COMPANY_ADDRESS } from "@/lib/company";
 import visaLogo from "@/assets/visa-logo.svg";
 import mastercardLogo from "@/assets/mastercard-logo.svg";
 import pciDssLogo from "@/assets/pci-dss-compliant-logo-vector.svg";
@@ -36,16 +37,16 @@ export function Footer() {
               Your trusted source for electrical materials, wiring, and installation supplies. Professional quality delivered to your door.
             </p>
             <address className="max-w-[280px] text-xs not-italic leading-relaxed text-[var(--color-text-tertiary)]">
-              <strong className="text-[var(--color-text-secondary)]">AVONTRA LTD</strong>
+              <strong className="text-[var(--color-text-secondary)]">{COMPANY.legalName}</strong>
               <br />
-              Company number: 17245887
+              Company number: {COMPANY.companyNumber}
               <br />
-              Dept 6735, 196 High Road, Wood Green, London, United Kingdom, N22 8HH
+              {COMPANY_ADDRESS}
               <br />
-              Director: Helen CHAMPION
+              Director: {COMPANY.director}
               <br />
-              <a href="tel:+447360545980" className="transition-colors hover:text-[var(--color-accent)]">
-                +44 7360 545980
+              <a href={COMPANY.phoneHref} className="transition-colors hover:text-[var(--color-accent)]">
+                {COMPANY.phone}
               </a>
             </address>
             <div className="mt-2 flex gap-2">
