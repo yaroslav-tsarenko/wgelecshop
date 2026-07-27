@@ -17,6 +17,15 @@ function serialize<T>(data: T): T {
   return JSON.parse(JSON.stringify(data));
 }
 
+async function safeQuery<T>(fn: () => Promise<T>, fallback: T): Promise<T> {
+  try {
+    return await fn();
+  } catch (err) {
+    console.warn("Database query fallback engaged:", (err as Error)?.message || String(err));
+    return fallback;
+  }
+}
+
 async function getHomeData() {
   try {
     const productInclude = {
@@ -27,10 +36,7 @@ async function getHomeData() {
     };
 
     const [
-      heroSlides,
-      dealCards,
-      promoSmall,
-      promoWide,
+      allBanners,
       brands,
       sections,
       tabs,
@@ -39,22 +45,19 @@ async function getHomeData() {
       allActiveProducts,
       categoriesWithChildren,
     ] = await Promise.all([
-      prisma.banner.findMany({ where: { isActive: true, type: "HERO" }, orderBy: { sortOrder: "asc" } }),
-      prisma.banner.findMany({ where: { isActive: true, type: "DEAL_CARD" }, orderBy: { sortOrder: "asc" } }),
-      prisma.banner.findMany({ where: { isActive: true, type: "PROMO_SMALL" }, orderBy: { sortOrder: "asc" } }),
-      prisma.banner.findMany({ where: { isActive: true, type: "PROMO_WIDE" }, orderBy: { sortOrder: "asc" } }),
-      prisma.brand.findMany({ where: { isActive: true }, orderBy: { sortOrder: "asc" } }),
-      prisma.homepageSection.findMany({ where: { isActive: true }, orderBy: { sortOrder: "asc" } }),
-      prisma.homepageTab.findMany({ where: { isActive: true }, orderBy: { sortOrder: "asc" } }),
-      prisma.utilityLink.findMany({ where: { isActive: true }, orderBy: { sortOrder: "asc" } }),
-      prisma.promoStripItem.findMany({ where: { isActive: true }, orderBy: { sortOrder: "asc" } }),
-      prisma.product.findMany({
+      safeQuery(() => prisma.banner.findMany({ where: { isActive: true }, orderBy: { sortOrder: "asc" } }), []),
+      safeQuery(() => prisma.brand.findMany({ where: { isActive: true }, orderBy: { sortOrder: "asc" } }), []),
+      safeQuery(() => prisma.homepageSection.findMany({ where: { isActive: true }, orderBy: { sortOrder: "asc" } }), []),
+      safeQuery(() => prisma.homepageTab.findMany({ where: { isActive: true }, orderBy: { sortOrder: "asc" } }), []),
+      safeQuery(() => prisma.utilityLink.findMany({ where: { isActive: true }, orderBy: { sortOrder: "asc" } }), []),
+      safeQuery(() => prisma.promoStripItem.findMany({ where: { isActive: true }, orderBy: { sortOrder: "asc" } }), []),
+      safeQuery(() => prisma.product.findMany({
         where: { status: "ACTIVE" },
         include: productInclude,
         orderBy: { createdAt: "desc" },
         take: 500,
-      }),
-      prisma.category.findMany({
+      }), []),
+      safeQuery(() => prisma.category.findMany({
         where: { isActive: true, parentId: null },
         orderBy: { sortOrder: "asc" },
         include: {
@@ -65,8 +68,13 @@ async function getHomeData() {
           },
           _count: { select: { products: true } },
         },
-      }),
+      }), []),
     ]);
+
+    const heroSlides = allBanners.filter((b) => b.type === "HERO");
+    const dealCards = allBanners.filter((b) => b.type === "DEAL_CARD");
+    const promoSmall = allBanners.filter((b) => b.type === "PROMO_SMALL");
+    const promoWide = allBanners.filter((b) => b.type === "PROMO_WIDE");
 
     const sectionProducts: Record<string, typeof allActiveProducts> = {};
     for (const section of sections) {
@@ -180,8 +188,20 @@ async function getHomeData() {
   }
 }
 
+async function getHomeDataWithRetry(retries = 3, delayMs = 600) {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    const data = await getHomeData();
+    // If data fetched successfully (has categories or active products), return immediately
+    if (data.categories.length > 0 || data.featuredProducts.length > 0 || attempt === retries) {
+      return data;
+    }
+    await new Promise((resolve) => setTimeout(resolve, delayMs));
+  }
+  return getHomeData();
+}
+
 export default async function HomePage() {
-  const data = await getHomeData();
+  const data = await getHomeDataWithRetry();
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
   return (

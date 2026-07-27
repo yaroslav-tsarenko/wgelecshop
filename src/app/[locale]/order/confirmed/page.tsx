@@ -19,66 +19,49 @@ function ConfirmedContent() {
   const { clearCart } = useCart();
   const searchParams = useSearchParams();
   const orderId = searchParams.get("orderId");
+  const statusParam = searchParams.get("status");
   const paymentLinkId = searchParams.get("id");
   const checkoutId = searchParams.get("checkoutId");
 
   const [order, setOrder] = useState<OrderDetail | null>(null);
-  const [loading, setLoading] = useState(!!orderId || (!!paymentLinkId && !!checkoutId));
+  const [loading, setLoading] = useState(!!orderId || !!paymentLinkId || !!checkoutId);
 
   useEffect(() => {
-    if (paymentLinkId && checkoutId) {
+    const targetOrderId = orderId;
+    const targetCheckoutId = checkoutId || paymentLinkId;
+
+    if (targetOrderId || targetCheckoutId) {
       let isSubscribed = true;
-      let intervalId: NodeJS.Timeout;
+      const params = new URLSearchParams();
+      if (targetOrderId) params.append("orderId", targetOrderId);
+      if (targetCheckoutId) params.append("checkoutId", targetCheckoutId);
+      if (statusParam) params.append("status", statusParam);
 
-      const checkStatus = () => {
-        fetch(`/api/orders/verify?paymentLinkId=${paymentLinkId}&checkoutId=${checkoutId}`)
-          .then((res) => res.json())
-          .then((data) => {
-            if (!isSubscribed) return;
-            if (data?.id) {
-              setOrder(data);
-              if (data.paymentStatus === "PAID") {
-                clearCart();
-                setLoading(false);
-                clearInterval(intervalId);
-              } else if (data.paymentStatus === "FAILED") {
-                setLoading(false);
-                clearInterval(intervalId);
-              }
+      fetch(`/api/orders/verify?${params.toString()}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (!isSubscribed) return;
+          if (data?.id) {
+            setOrder(data);
+            if (data.paymentStatus === "PAID") {
+              clearCart();
             }
-          })
-          .catch(() => {
-            if (isSubscribed) {
-              setOrder(null);
-              setLoading(false);
-              clearInterval(intervalId);
-            }
-          });
-      };
-
-      // Run immediately
-      checkStatus();
-
-      // Poll every 2 seconds
-      intervalId = setInterval(checkStatus, 2000);
+          }
+        })
+        .catch(() => {
+          if (isSubscribed) setOrder(null);
+        })
+        .finally(() => {
+          if (isSubscribed) setLoading(false);
+        });
 
       return () => {
         isSubscribed = false;
-        clearInterval(intervalId);
       };
-    } else if (orderId) {
-      fetch(`/api/orders/${orderId}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setOrder(data?.id ? data : null);
-          if (data?.paymentStatus === "PAID") {
-            clearCart();
-          }
-        })
-        .catch(() => setOrder(null))
-        .finally(() => setLoading(false));
+    } else {
+      setLoading(false);
     }
-  }, [orderId, paymentLinkId, checkoutId, clearCart]);
+  }, [orderId, statusParam, paymentLinkId, checkoutId, clearCart]);
 
   if (loading) {
     return (
@@ -90,7 +73,40 @@ function ConfirmedContent() {
     );
   }
 
-  const isFailed = order?.paymentStatus === "FAILED";
+  const isFailed = order?.paymentStatus === "FAILED" || ["decline", "cancel", "exception"].includes(statusParam || "");
+
+  const getHeaderInfo = () => {
+    if (!isFailed) {
+      return {
+        title: t("orderPlaced"),
+        message: "Thank you for your order. We'll send a confirmation email shortly.",
+      };
+    }
+    if (statusParam === "cancel") {
+      return {
+        title: "Payment Cancelled",
+        message: "You cancelled the payment transaction. No charges were made to your account.",
+      };
+    }
+    if (statusParam === "decline") {
+      return {
+        title: "Payment Declined",
+        message: "Your payment was declined by your bank or card issuer. Please check your details or try another payment method.",
+      };
+    }
+    if (statusParam === "exception") {
+      return {
+        title: "Payment Error",
+        message: "An unexpected error occurred while processing your payment. Please try again.",
+      };
+    }
+    return {
+      title: "Payment Failed",
+      message: "Your payment transaction could not be completed. Please try again or use another payment method.",
+    };
+  };
+
+  const headerInfo = getHeaderInfo();
 
   return (
     <div style={{ maxWidth: "640px", margin: "2rem auto 4rem", padding: "0 1rem" }}>
@@ -121,12 +137,10 @@ function ConfirmedContent() {
           {isFailed ? <AlertTriangle size={40} /> : <CheckCircle size={40} />}
         </motion.div>
         <h1 style={{ fontSize: "1.75rem", fontWeight: 800, letterSpacing: "-0.02em", marginBottom: "0.5rem" }}>
-          {isFailed ? "Payment Failed" : t("orderPlaced")}
+          {headerInfo.title}
         </h1>
         <p style={{ color: "var(--color-text-secondary)", fontSize: "0.9375rem" }}>
-          {isFailed 
-            ? "Your payment transaction could not be completed. Please try again or use another payment method."
-            : "Thank you for your order. We'll send a confirmation email shortly."}
+          {headerInfo.message}
         </p>
         {order && (
           <p style={{ marginTop: "0.75rem", fontSize: "0.875rem", color: "var(--color-text-tertiary)" }}>
@@ -231,7 +245,7 @@ function ConfirmedContent() {
             </div>
             {isFailed ? (
               <p style={{ fontSize: "0.8125rem", color: "var(--color-text-secondary)", lineHeight: 1.5, margin: 0 }}>
-                Please check your card details and try again. Alternatively, you can contact our customer support for assistance.
+                Please check your card details or try a different payment method. You can return to checkout to retry your payment.
               </p>
             ) : (
               <ul style={{ fontSize: "0.8125rem", color: "var(--color-text-secondary)", lineHeight: 1.6, paddingLeft: "1rem", margin: 0 }}>
@@ -282,9 +296,15 @@ function ConfirmedContent() {
         <Button as={Link} href="/account/orders" variant="bordered" style={{ flex: "1 1 200px" }}>
           View Orders <ChevronRight size={16} />
         </Button>
-        <Button as={Link} href="/catalog" color="primary" style={{ flex: "1 1 200px" }}>
-          Continue Shopping
-        </Button>
+        {isFailed ? (
+          <Button as={Link} href="/checkout" color="primary" style={{ flex: "1 1 200px" }}>
+            Try Again / Return to Checkout
+          </Button>
+        ) : (
+          <Button as={Link} href="/catalog" color="primary" style={{ flex: "1 1 200px" }}>
+            Continue Shopping
+          </Button>
+        )}
       </motion.div>
     </div>
   );

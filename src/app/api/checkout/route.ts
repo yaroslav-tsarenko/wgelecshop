@@ -120,76 +120,102 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Oppwa base URL
-    const baseUrl = process.env.PAYBYLINK_BASE_URL || "https://eu-test.oppwa.com";
+    // ProcX HPP Endpoint
+    const isLive = process.env.PROCX_LIVE === "true";
+    const procxEndpoint = isLive
+      ? "https://api.prmpg.com/payment/checkout"
+      : "https://api-sandbox.prmpg.com/payment/checkout";
 
-    // Call Pay By Link API to generate hosted payment page link
-    const params = new URLSearchParams();
-    params.append("entityId", process.env.PAYBYLINK_ENTITY_ID || "");
-    params.append("amount", totalInSelectedCurrency.toFixed(2));
-    params.append("currency", selectedCurrency);
-    params.append("paymentType", "DB");
-    params.append("merchantTransactionId", order.orderNumber);
-
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:4554";
-    const localizedPath = locale ? `/${locale}/order/confirmed` : "/order/confirmed";
-    params.append("shopperResultUrl", `${siteUrl}${localizedPath}`);
-
-    params.append("customer.givenName", validated.shipping.firstName);
-    params.append("customer.surname", validated.shipping.lastName);
-    params.append("customer.email", validated.contact.email);
-    if (validated.contact.phone) {
-      params.append("customer.mobile", validated.contact.phone);
+    // Build Redirect URLs ensuring https:// prefix
+    const reqHost = request.headers.get("host");
+    let siteUrl = process.env.NEXT_PUBLIC_SITE_URL || (reqHost ? `https://${reqHost}` : "https://www.wgelecshop.com");
+    if (siteUrl.startsWith("http://")) {
+      siteUrl = siteUrl.replace("http://", "https://");
     }
+    siteUrl = siteUrl.replace(/\/+$/, "");
 
-    params.append("collectBilling", "street1,postcode,city,country");
-    params.append("mandatoryBilling", "street1,postcode,city,country");
-    params.append("billing.street1", validated.shipping.address1);
-    params.append("billing.city", validated.shipping.city);
-    params.append("billing.postcode", validated.shipping.postalCode);
-    params.append("billing.country", validated.shipping.country);
+    const localizedPath = locale ? `/${locale}/order/confirmed` : "/order/confirmed";
+    const redirectBase = `${siteUrl}${localizedPath}`;
 
-    const conversionRate = rates[selectedCurrency as keyof typeof rates] || 1;
-    order.items.forEach((item, index) => {
-      params.append(`cart.items[${index}].currency`, selectedCurrency);
-      params.append(`cart.items[${index}].description`, item.productName);
-      params.append(`cart.items[${index}].merchantItemId`, item.productId);
-      params.append(`cart.items[${index}].name`, item.productName);
-      params.append(`cart.items[${index}].price`, (Number(item.price) * conversionRate).toFixed(2));
-      params.append(`cart.items[${index}].quantity`, String(item.quantity));
-      params.append(`cart.items[${index}].totalAmount`, (Number(item.total) * conversionRate).toFixed(2));
-    });
+    const acceptUrl    = `${redirectBase}?status=accept&orderId=${order.id}`;
+    const declineUrl   = `${redirectBase}?status=decline&orderId=${order.id}`;
+    const pendingUrl   = `${redirectBase}?status=pending&orderId=${order.id}`;
+    const exceptionUrl = `${redirectBase}?status=exception&orderId=${order.id}`;
+    const cancelUrl    = `${redirectBase}?status=cancel&orderId=${order.id}`;
 
-    const paybyLinkUrl = `${baseUrl}/paybylink/v1`;
-    console.log("Oppwa Pay By Link Request URL:", paybyLinkUrl);
-    console.log("Oppwa Pay By Link Request Body:", params.toString());
+    const userAgent = request.headers.get("user-agent") || "Mozilla/5.0 (Windows NT 10.0; Win64; x64)";
+    const clientIp = request.headers.get("x-forwarded-for")?.split(",")[0].trim() || request.headers.get("x-real-ip") || "1.2.3.4";
 
-    const response = await fetch(paybyLinkUrl, {
+    const procxPayload = {
+      type: "hosted_page",
+      locale: locale ? `${locale.toLowerCase()}_${locale.toUpperCase()}` : "en_EN",
+      operation_type: "direct_capture",
+      amount: Number(totalInSelectedCurrency.toFixed(2)),
+      currency: selectedCurrency,
+      token_type: "oneshot",
+      payment_channel: "e-commerce",
+      order_merchant_id: order.orderNumber,
+      customer_first_name: validated.shipping.firstName,
+      customer_last_name: validated.shipping.lastName,
+      customer_street_name: validated.shipping.address1,
+      customer_city: validated.shipping.city,
+      customer_country: validated.shipping.country || "LV",
+      customer_zip_code: validated.shipping.postalCode,
+      customer_email: validated.contact.email,
+      customer_ip: clientIp,
+      accept_url: acceptUrl,
+      decline_url: declineUrl,
+      pending_url: pendingUrl,
+      exception_url: exceptionUrl,
+      cancel_url: cancelUrl,
+      customer_browser_info_color_depth: 24,
+      customer_browser_info_accept_header: "*/*",
+      customer_browser_info_java_enabled: false,
+      customer_browser_info_js_enabled: true,
+      customer_browser_info_screen_height: 1080,
+      customer_browser_info_screen_width: 1920,
+      customer_browser_info_time_zone: "Europe/Riga",
+      customer_browser_info_language: "en-US",
+      customer_browser_info_user_agent: userAgent,
+    };
+
+    console.log("ProcX HPP Request Endpoint:", procxEndpoint);
+    console.log("ProcX HPP Request Payload:", JSON.stringify(procxPayload));
+
+    const response = await fetch(procxEndpoint, {
       method: "POST",
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        "Authorization": `Bearer ${process.env.PAYBYLINK_AUTH_TOKEN}`,
+        "Content-Type": "application/json",
+        "x-api-key": process.env.PROCX_PRIVATE_KEY || "",
       },
-      body: params.toString(),
+      body: JSON.stringify(procxPayload),
     });
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error("Pay By Link API error status:", response.status, "body:", errorText);
-      throw new Error(`Failed to generate payment link: ${errorText}`);
+      console.error("ProcX HPP API error status:", response.status, "body:", errorText);
+      throw new Error(`Failed to generate ProcX payment link: ${errorText}`);
     }
 
-    const payLinkData = await response.json();
+    const procxData = await response.json();
+    console.log("ProcX HPP Response Data:", JSON.stringify(procxData));
+
+    const checkoutId = procxData.checkout?.checkout_id || procxData.checkout_id || null;
+    const redirectUrl = procxData.redirect_url;
+
+    if (!redirectUrl) {
+      throw new Error(`ProcX did not return a valid redirect_url: ${JSON.stringify(procxData)}`);
+    }
 
     const updatedOrder = await prisma.order.update({
       where: { id: order.id },
       data: {
-        paymentId: payLinkData.id,
+        paymentId: checkoutId || order.id,
       },
       include: { items: true },
     });
 
-    return NextResponse.json({ ...updatedOrder, paymentLink: payLinkData.link }, { status: 201 });
+    return NextResponse.json({ ...updatedOrder, paymentLink: redirectUrl }, { status: 201 });
   } catch (error: any) {
     console.error("Error creating order:", error);
     return NextResponse.json({
