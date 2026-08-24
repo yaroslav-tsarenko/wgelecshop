@@ -625,6 +625,9 @@ export default function CheckoutPage() {
                     privacy: (chunks) => (
                       <Link href="/policies/privacy" target="_blank">{chunks}</Link>
                     ),
+                    returns: (chunks) => (
+                      <Link href="/policies/returns" target="_blank">{chunks}</Link>
+                    ),
                   })}
                   {...register("termsAccepted")}
                 />

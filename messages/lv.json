@@ -141,8 +141,8 @@
     "processing": "Processing your order...",
     "merchantLocationTitle": "Tirgotāja tirdzniecības vietas adrese",
     "merchantLocationNote": "Jūsu pasūtījumu pārdod un nosūta šis tirgotājs. Šī ir tirgotāja reģistrētā tirdzniecības vietas adrese, un šis nosaukums parādīsies jūsu maksājumu kartes izrakstā.",
-    "termsConsent": "Esmu izlasījis un piekrītu <terms>Noteikumiem un nosacījumiem</terms> un <privacy>Privātuma politikai</privacy>.",
-    "termsRequired": "Lai veiktu pasūtījumu, jums jāpiekrīt Noteikumiem un nosacījumiem un Privātuma politikai."
+    "termsConsent": "Esmu izlasījis un piekrītu <terms>Noteikumiem un nosacījumiem</terms>, <privacy>Privātuma politikai</privacy> un <returns>Atgriešanas, atmaksas un atcelšanas politikai</returns>.",
+    "termsRequired": "Lai veiktu pasūtījumu, jums jāpiekrīt Noteikumiem un nosacījumiem, Privātuma politikai un Atgriešanas, atmaksas un atcelšanas politikai."
   },
   "account": {
     "title": "My Account",

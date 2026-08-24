@@ -141,8 +141,8 @@
     "processing": "Processing your order...",
     "merchantLocationTitle": "Merchant outlet location",
     "merchantLocationNote": "Your order is sold and dispatched by this merchant. This is the merchant's registered outlet location and the name that will appear on your card statement.",
-    "termsConsent": "I have read and agree to the <terms>Terms and Conditions</terms> and the <privacy>Privacy Policy</privacy>.",
-    "termsRequired": "You must accept the Terms and Conditions and the Privacy Policy to place your order."
+    "termsConsent": "I have read and agree to the <terms>Terms and Conditions</terms>, the <privacy>Privacy Policy</privacy> and the <returns>Return, Refund & Cancellation Policy</returns>.",
+    "termsRequired": "You must accept the Terms and Conditions, the Privacy Policy and the Return, Refund & Cancellation Policy to place your order."
   },
   "account": {
     "title": "My Account",
