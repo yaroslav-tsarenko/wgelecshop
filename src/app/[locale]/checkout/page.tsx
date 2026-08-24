@@ -456,7 +456,7 @@ export default function CheckoutPage() {
                 <div className={styles.twoCol}>
                   <div>
                     <label style={labelStyle}>{t("city")} *</label>
-                    <input style={{ ...inputPlainStyle, borderColor: errors.shipping?.city ? "var(--color-danger)" : undefined }} placeholder="Riga" {...register("shipping.city")} />
+                    <input style={{ ...inputPlainStyle, borderColor: errors.shipping?.city ? "var(--color-danger)" : undefined }} placeholder="London" {...register("shipping.city")} />
                     {errors.shipping?.city && <span style={errorStyle}>{errors.shipping.city.message}</span>}
                   </div>
                   <div>
@@ -468,7 +468,7 @@ export default function CheckoutPage() {
                 <div className={styles.twoCol}>
                   <div>
                     <label style={labelStyle}>{t("postalCode")} *</label>
-                    <input style={{ ...inputPlainStyle, borderColor: errors.shipping?.postalCode ? "var(--color-danger)" : undefined }} placeholder="LV-1001" {...register("shipping.postalCode")} />
+                    <input style={{ ...inputPlainStyle, borderColor: errors.shipping?.postalCode ? "var(--color-danger)" : undefined }} placeholder="SW1A 1AA" {...register("shipping.postalCode")} />
                     {errors.shipping?.postalCode && <span style={errorStyle}>{errors.shipping.postalCode.message}</span>}
                   </div>
                   <div>
