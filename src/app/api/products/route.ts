@@ -113,9 +113,9 @@ export async function GET(request: NextRequest) {
     const headers: Record<string, string> = {};
     if (isPublic) {
       headers["Cache-Control"] =
-        "public, s-maxage=60, stale-while-revalidate=600, stale-if-error=86400";
+        "public, s-maxage=3600, stale-while-revalidate=86400, stale-if-error=86400";
       headers["CDN-Cache-Control"] =
-        "public, s-maxage=60, stale-while-revalidate=600, stale-if-error=86400";
+        "public, s-maxage=3600, stale-while-revalidate=86400, stale-if-error=86400";
     } else {
       headers["Cache-Control"] = "no-store";
     }
